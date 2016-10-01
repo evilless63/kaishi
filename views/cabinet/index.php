@@ -14,7 +14,7 @@
                     </div>
                     <div class="lcContentBlock">
                         <img class="lcContentBlockImg" src="/template/images/icons/lc__countZakaz.png" alt="">
-                        <div class="lcContentBlockDesc">кол-во заказов : 2</div>
+                        <div class="lcContentBlockDesc">кол-во заказов : <?php echo $ordersCount["COUNT(*)"]?></div>
                     </div>
                 </div>
                 <div class="lcContentTabs tabs">
@@ -42,7 +42,10 @@
                             <div class="zakazRowSchedule">Оставить отзыв</div>
                         </div>
                         <div class="spoilerContent spoiler-content" data-spoiler-link="<?php echo $orderCount; ?>">
-                            <?php foreach ($products as $product):?>
+                            <?php 
+
+                            $products = Product::getProdustsByIds(array_keys(json_decode($order['products'], true)));
+                            foreach ($products as $product):?>
                             <div class="zakazRowSpoilerWrap">
                                 <img src="/template/images/user/sushi/sushi.png" alt="">
                                 <div class="zakazRowSpoilerWrapName">
@@ -64,13 +67,13 @@
                             <?php endforeach;?> 
                             <div class="zakazRowSpoilerDesc">
                                 <div class="zakazRowScheduleDesc">Повторить заказ</div>
-                                <span>Количество персон: 3</span>
+                                <!-- <span>Количество персон: 3</span> -->
                                 <span>АДРЕС ДОСТАВКИ: <?php echo $order['user_adress']; ?></span>
                                 <span>Номер телефона: <?php echo $order['user_phone']; ?></span>
-                                <span>Оплата <?php echo $order['user_paymethod']; ?><br>  
-                                Начислено 22 бонусов<br>
-                                Списано 0 бонусов<br>    </span>
-                                <span>ОБЩАЯ СТОИМОСТЬ ЗАКАЗА: <?php echo $order['user_paymethod']; ?> руб.</span>
+                                <span>Оплата: <?php echo $order['user_paymethod']; ?><br>  
+                                <!-- Начислено 22 бонусов<br>
+                                Списано 0 бонусов<br>   -->  </span>
+                                <span>ОБЩАЯ СТОИМОСТЬ ЗАКАЗА: <?php echo $order['order_summ']; ?> руб.</span>
                             </div>
                         </div>
                     <?php 
@@ -101,22 +104,22 @@
                             <div class="settingsSurname">Фамилия</div>
                             <input type="text" value="<?php echo $user['surname'];?>" id="settingsSurnameInput" name="settingsSurnameInput">
                         </div>
-                        <div class="settingsRow bday">
+                        <!-- <div class="settingsRow bday">
                             <div class="settingsBday">День рождения</div>
                             <input type="text" value="" id="settingsBdayInput" name="settingsBdayInput">
-                        </div>
-                        <div class="settingsRow sms">
+                        </div> -->
+                        <!-- <div class="settingsRow sms">
                             <div class="settingsSms">Принимать SMS рассылки</div>
                             <input type="checkbox" value="checked" id="settingsSmsInput" name="settingsSmsInput">
-                        </div>
+                        </div> -->
                         <div class="settingsRow mail">
                             <div class="settingsMail">Email адрес</div>
                             <input type="text" value="<?php echo $user['email'];?>" id="settingsMailInput" name="settingsMailInput">
                         </div>
-                        <div class="settingsRow mailRassylka">
+                        <!-- <div class="settingsRow mailRassylka">
                             <div class="settingsMailRassylka">Получать Email рассылку</div>
                             <input type="checkbox" value="checked" id="settingsMailRassylkaInput" name="settingsMailRassylkaInput">
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="passwordEdit"><a href="/cabinet/edit">Сменить пароль</a></div>
                         </div>

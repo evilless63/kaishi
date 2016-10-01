@@ -301,6 +301,8 @@ class Order
         return $ordersDeletedCount;
     }
 
+    
+
     /**
      * Возвращает текстое пояснение статуса для заказа :<br/>
      * <i>1 - Новый заказ, 2 - В обработке, 3 - Доставляется, 4 - Закрыт</i>
@@ -368,7 +370,7 @@ class Order
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, user_id, user_name, user_surname, user_adress, user_phone, user_comment, user_adressdop, `date`, user_paymethod, user_ordernumber, user_orderstatus FROM product_order WHERE user_id = :id';
+        $sql = 'SELECT id, user_id, user_name, user_surname, user_adress, user_phone, user_comment, user_adressdop, `date`, products, user_paymethod, user_ordernumber, user_orderstatus, order_summ FROM product_order WHERE user_id = :id';
 
         $ordersListId = array();
         // Используется подготовленный запрос
@@ -396,10 +398,34 @@ class Order
             $ordersListId[$i]['user_paymethod'] = $row['user_paymethod'];
             $ordersListId[$i]['user_ordernumber'] = $row['user_ordernumber'];
             $ordersListId[$i]['user_orderstatus'] = $row['user_orderstatus'];
+            $ordersListId[$i]['order_summ'] = $row['order_summ'];
             $i++;
         }
         return $ordersListId;
 
+    }
+
+    public static function getCountUserOrders($userId){
+          // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT COUNT(*) FROM `product_order` WHERE user_id = :id';
+
+        $ordersDeletedCount = array();
+        // Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $userId, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        
+        // Выполнение коменды
+        $result->execute();
+
+        $ordersUserCount = $result->fetch();
+
+        return $ordersUserCount;
     }
 
 

@@ -1527,7 +1527,7 @@ catalogActive {
     cursor: pointer;
     position: relative;
     text-transform: uppercase;
-    width: 85px; }
+    width: 105px; }
   .lcContentTabs .zakaz .spoilerContent .zakazRowSpoilerWrap .zakazRowSpoilerWrapCart:before {
     content: url(../images/icons/misc__cart.png);
     width: 22px;
