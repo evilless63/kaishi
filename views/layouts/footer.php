@@ -10,16 +10,17 @@
                     </div>
                     <div class="footerMenuBlockContent">
                         <ul>
-                            <li><a href="">Суши</a></li>
-                            <li><a href="">Инари суши</a></li>
-                            <li><a href="">Горячие роллы</a></li>
-                            <li><a href="">Сеты</a></li>
-                            <li><a href="">Гунканы</a></li>
+                            <li><a href="/category/1">Суши</a></li>
+                            <li><a href="/category/2">Инари суши</a></li>
+                            <li><a href="/category/3">Роллы</a></li>
+                            <li><a href="/category/4">Горячие роллы</a></li>
+                            <li><a href="/category/5">Сеты</a></li> 
                         </ul>
                         <ul>
-                            <li><a href="">Закуски</a></li>
-                            <li><a href="">Пицца</a></li>
-                            <li><a href="">Напитки</a></li>
+                            <li><a href="/category/6">Гунканы</a></li>
+                            <li><a href="/category/7">Закуски</a></li>
+                            <li><a href="/category/8">Пицца</a></li>
+                            <li><a href="/category/9">Напитки</a></li>
                         </ul>
                     </div>
                 </div>
@@ -29,11 +30,11 @@
                     </div>
                     <div class="footerMenuBlockContent">
                         <ul>
-                            <li><a href="akcii.html">Акции</a></li>
-                            <li><a href="otzyvy.html">Отзывы</a></li>
-                            <li><a href="kontakty.html">Контакты</a></li>
+                            <li><a href="/shares">Акции</a></li>
+                            <li><a href="/reviews">Отзывы</a></li>
+                            <li><a href="/contacts">Контакты</a></li>
                             <li><a href="vakansii.html">Вакансии</a></li>
-                            <li><a href="dostavka.html">Доставка и вакансии</a></li>
+                            <li><a href="/delivery">Доставка и оплата</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,9 +44,9 @@
                     </div>
                     <div class="footerMenuBlockContent">
                         <ul>
-                            <li><a href="">Распространение рекламных материалов</a></li>
-                            <li><a href="">Партнерская программа</a></li>
-                            <li><a href="">Франчайзинг</a></li>
+                            <li><a href="#">Распространение рекламных материалов</a></li>
+                            <li><a href="#">Партнерская программа</a></li>
+                            <li><a href="#">Франчайзинг</a></li>
                         </ul>
                     </div>
                 </div>
@@ -53,8 +54,8 @@
             <div class="footerSocial">
                 <span>(917) 2030 454</span>
                 <div class="socialLinksContainer">
-                    <a href="" class="socialLinks"><img src="/template/images/icons/social__instagram.svg" alt="social__instagram" title="Наша группа в Инстаграм"></a>
-                    <a href="" class="socialLinks"><img src="/template/images/icons/social__vk.svg" alt="social__vk" title="Наша группа в Вконтакте"></a>
+                    <a href="#" class="socialLinks"><img src="/template/images/icons/social__instagram.svg" alt="social__instagram" title="Наша группа в Инстаграм"></a>
+                    <a href="#" class="socialLinks"><img src="/template/images/icons/social__vk.svg" alt="social__vk" title="Наша группа в Вконтакте"></a>
                 </div>
             </div>
         </div>

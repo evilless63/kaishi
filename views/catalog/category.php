@@ -55,7 +55,7 @@
 
               <div class="tabs__content active">
                 <div class="tabs__contentDesc">
-                    <img src="/template/images/user/sushi/profailImg.png" alt="">
+                    <img class="productModalImage" src="/template/images/user/sushi/profailImg.png" alt="">
                     <span class="productDescription"></span>
                 </div>
                 <div class="tabs__contentBuy">

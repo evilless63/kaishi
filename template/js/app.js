@@ -60,6 +60,7 @@ $(document).ready(function(){
 			        $('.sushiProfailArea').children('h3').html(data.name);
 			        $('.productPrice').html(data.price);
 			        $('.productDescription').html(data.description);
+			        $(".productModalImage").attr('src', '/upload/images/products/' + data.id + '.jpg');
 			    },
 			    // dataType: "json"
 			});

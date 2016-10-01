@@ -922,13 +922,20 @@ main {
     padding: 10px 0;
     text-transform: uppercase;
     background-color: #d6f2f5;
-    cursor: pointer; }
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
   .sushiBlock .sushiBlockDesc {
     font-family: candara;
     color: #353637;
     padding: 9px 0;
     font-size: 0.8em;
-    font-weight: 900; }
+    font-weight: 900;
+    height: 50px;
+    display: flex;
+    align-items: center; }
   .sushiBlock .sushiBlockGet {
     display: flex;
     justify-content: space-between;
@@ -1331,10 +1338,11 @@ catalogActive {
           flex-direction: column;
           align-items: center; }
           .sushiProfailWrapper .sushiProfailArea .tabs .tabs__content .tabs__contentDesc span {
-            display: block;
+            /*display: block;*/
             font-size: 0.8em;
             font-family: arial;
             padding: 3px 0;
+            width: 350px;
             color: #4e4c62; }
         .sushiProfailWrapper .sushiProfailArea .tabs .tabs__content .tabs__contentBuy {
           width: 34.48276%; }
@@ -1368,7 +1376,7 @@ catalogActive {
             cursor: pointer;
             position: relative;
             text-transform: uppercase;
-            width: 85px;
+            width: 100px;
             margin: 30px auto 0px auto; }
           .sushiProfailWrapper .sushiProfailArea .tabs .tabs__content .tabs__contentBuy .sushiBlockGetBusketProfail:before {
             content: url(../images/icons/misc__cart.png);
@@ -1623,6 +1631,9 @@ catalogActive {
   .lcContentTabs .zakaz .settingsRow input[type="checkbox"] {
     margin-right: 240px; }
 
+.productModalImage {
+  width: 200px;
+}
 
 
 /*БЛОК СТИЛЕЙ СТРАНИЦЫ КОНТАКТЫ*/
