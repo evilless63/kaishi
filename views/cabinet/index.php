@@ -24,9 +24,6 @@
                         <li>Настройки</li>
                     </ul>
                     <div class="tabs__content zakaz active">
-                    <!-- <pre>
-                        <?php var_dump($ordersListId); ?>   
-                    </pre> -->
                     <?php 
                         $orderCount = 1;
                         foreach($ordersListId as $order):

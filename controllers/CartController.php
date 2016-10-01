@@ -120,6 +120,7 @@ class CartController
 
     }
 
+
     public function actionAddproducts()
     {
 
@@ -145,7 +146,9 @@ class CartController
                 if(isset($userName, $userSurname, $userAdress, $userPhone, $userPayMethod)) {
                    // Если ошибок нет
                 // Сохраняем заказ в базе данных
-                $orderNumber = rand(1, 40000);
+                $currentOrderNumber = Order::selectMaxOrderNumber();
+                $orderNumber = $currentOrderNumber['user_ordernumber'];
+                $orderNumber ++;
                 $result = Order::save($userName, $userId, $userSurname, $userAdress, $userPhone, $userComment, $userAdressDop, $productsInCart, $userPayMethod, $orderNumber, $orderStatus, $orderSumm);
                 // echo "Ваш заказ №" . $orderNumber . "успешно сохранен";
 

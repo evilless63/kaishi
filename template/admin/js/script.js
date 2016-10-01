@@ -423,7 +423,7 @@ $('tr[data-href]').on("click", function() {
 	    if(this.value.length >= 1){
 	        $.ajax({
 	            type: 'post',
-	            url: "http://test.avtoshkola-v-samare.ru/ds/config/orderSearch.php", //Путь к обработчику
+	            url: "http://shop/ds/config/orderSearch.php", //Путь к обработчику
 	            data: {'referal':this.value},
 	            response: 'text',
 	            success: function(data){

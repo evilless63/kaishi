@@ -516,4 +516,25 @@ class Order
 
     }
 
+    public static function selectMaxOrderNumber(){
+
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT MAX(user_ordernumber) AS user_ordernumber FROM product_order';
+
+        $result = $db->prepare($sql);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        // Выполняем запрос
+        $result->execute();
+
+        // Возвращаем данные
+        return $result->fetch();
+
+    }
+
 }
