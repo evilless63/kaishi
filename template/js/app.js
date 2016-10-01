@@ -61,6 +61,7 @@ $(document).ready(function(){
 			        $('.productPrice').html(data.price);
 			        $('.productDescription').html(data.description);
 			        $(".productModalImage").attr('src', '/upload/images/products/' + data.id + '.jpg');
+			        $('.sushiBlockGetBusketProfail').attr('data-id', data.id);
 			    },
 			    // dataType: "json"
 			});
@@ -85,11 +86,11 @@ $(document).ready(function(){
 			$( ".sushiProfailWrapper" ).css( "display", "none" );
 		});		
 	
-	$(".add-to-cart").click(
-		function(){
-			alert("Товар добавлен в корзину !");
-			$( ".sushiProfailWrapper" ).css( "display", "none" );
-		});	
+	// $(".add-to-cart").click(
+	// 	function(){
+	// 		alert("Товар добавлен в корзину !");
+	// 		$( ".sushiProfailWrapper" ).css( "display", "none" );
+	// 	});	
 
 	// $(".addCommentButton").click(
 	// 	function(){

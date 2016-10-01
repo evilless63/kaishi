@@ -137,6 +137,7 @@
                 var id = $(this).attr("data-id");
                 $.post("/cart/addAjax/"+id, {}, function (data) {
                     $("#cart-count").html(data);
+                    alert("Товар добавлен в корзину !");
                     location.reload();
                 });
                 return false;

@@ -68,7 +68,7 @@
                         <input name="contentBuyItem" type="radio" checked/>
                     </div>
                     <span>Увеличить количество Вы сможете в корзине</span>
-                    <div class="sushiBlockGetBusketProfail add-to-cart">
+                    <div class="sushiBlockGetBusketProfail add-to-cart" data-id="">
                         В корзину
                     </div>
                 </div>
