@@ -15,14 +15,14 @@ class Order
      * @param array $products <p>Массив с товарами</p>
      * @return boolean <p>Результат выполнения метода</p>
      */
-    public static function save($userName, $userSurname, $userAdress, $userPhone, $userComment, $userAdressDop, $products, $userPayMethod, $orderNumber, $orderStatus, $orderSumm)
+    public static function save($userName, $userId, $userSurname, $userAdress, $userPhone, $userComment, $userAdressDop, $products, $userPayMethod, $orderNumber, $orderStatus, $orderSumm)
     {
         // Соединение с БД
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'INSERT INTO product_order (user_name, user_surname, user_adress, user_phone, user_comment, user_adressdop,  products, user_paymethod, user_ordernumber, user_orderstatus, order_summ) '
-                . 'VALUES (:user_name, :user_surname, :user_adress, :user_phone, :user_comment, :user_adressdop, :products, :user_paymethod, :user_ordernumber, :user_orderstatus, :order_summ)';
+        $sql = 'INSERT INTO product_order (user_name, user_id, user_surname, user_adress, user_phone, user_comment, user_adressdop,  products, user_paymethod, user_ordernumber, user_orderstatus, order_summ) '
+                . 'VALUES (:user_name, :user_id, :user_surname, :user_adress, :user_phone, :user_comment, :user_adressdop, :products, :user_paymethod, :user_ordernumber, :user_orderstatus, :order_summ)';
 
         $products = json_encode($products);
 
@@ -38,6 +38,7 @@ class Order
         $result->bindParam(':user_ordernumber', $orderNumber, PDO::PARAM_STR);
         $result->bindParam(':user_orderstatus', $orderStatus, PDO::PARAM_STR);
         $result->bindParam(':order_summ', $orderSumm, PDO::PARAM_STR);
+        $result->bindParam(':user_id', $userId, PDO::PARAM_STR);
 
         return $result->execute();
     }
@@ -354,6 +355,51 @@ class Order
 
         // Возвращаем данные
         return $result->fetch();
+    }
+
+    /**
+     * Возвращает все заказы с указанным id пользователя
+     * @param integer $id <p>id</p>
+     * @return array <p>Массив с заказами</p>
+     */
+    public static function getOrderByUserId($userId)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT id, user_id, user_name, user_surname, user_adress, user_phone, user_comment, user_adressdop, `date`, user_paymethod, user_ordernumber, user_orderstatus FROM product_order WHERE user_id = :id';
+
+        $ordersListId = array();
+        // Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $userId, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        
+        // Выполнение коменды
+        $result->execute();
+        
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+            $ordersListId[$i]['id'] = $row['id'];
+            $ordersListId[$i]['user_name'] = $row['user_name'];
+            $ordersListId[$i]['user_surname'] = $row['user_surname'];
+            $ordersListId[$i]['user_adress'] = $row['user_adress'];
+            $ordersListId[$i]['user_phone'] = $row['user_phone'];
+            $ordersListId[$i]['user_comment'] = $row['user_comment'];
+            $ordersListId[$i]['user_adressdop'] = $row['user_adressdop'];
+            $ordersListId[$i]['date'] = $row['date'];
+            $ordersListId[$i]['products'] = $row['products'];
+            $ordersListId[$i]['user_paymethod'] = $row['user_paymethod'];
+            $ordersListId[$i]['user_ordernumber'] = $row['user_ordernumber'];
+            $ordersListId[$i]['user_orderstatus'] = $row['user_orderstatus'];
+            $i++;
+        }
+        return $ordersListId;
+
     }
 
 

@@ -18,8 +18,26 @@ class CabinetController
         // Получаем информацию о пользователе из БД
         $user = User::getUserById($userId);
 
+
+
         // Получаем список заказов
         $ordersList = Order::getOrdersList();
+
+
+        // Получаем список заказов по вошедшему пользователю
+        $ordersListId = Order::getOrderByUserId($userId);
+        
+        // // Получаем данные о конкретном заказе
+        // $order = Order::getOrderById($id);
+
+        // // Получаем массив с идентификаторами и количеством товаров
+        // $productsQuantity = json_decode($order['products'], true);
+
+        // // Получаем массив с индентификаторами товаров
+        // $productsIds = array_keys($productsQuantity);
+
+        // // Получаем список товаров в заказе
+        // $products = Product::getProdustsByIds($productsIds);
 
          // Получим идентификаторы и количество товаров в корзине
         $productsInCart = Cart::getProducts();

@@ -139,20 +139,21 @@ class CartController
                 $userAdressDop = $_POST['userAdressDop'];
                 $userPayMethod = $_POST['userPayMethod'];
                 $orderSumm = $_POST['orderSumm'];
+                $userId = $_SESSION['user'];
                 $orderStatus = 1;
 
                 if(isset($userName, $userSurname, $userAdress, $userPhone, $userPayMethod)) {
                    // Если ошибок нет
                 // Сохраняем заказ в базе данных
                 $orderNumber = rand(1, 40000);
-                $result = Order::save($userName, $userSurname, $userAdress, $userPhone, $userComment, $userAdressDop, $productsInCart, $userPayMethod, $orderNumber, $orderStatus, $orderSumm);
+                $result = Order::save($userName, $userId, $userSurname, $userAdress, $userPhone, $userComment, $userAdressDop, $productsInCart, $userPayMethod, $orderNumber, $orderStatus, $orderSumm);
                 // echo "Ваш заказ №" . $orderNumber . "успешно сохранен";
 
                     if ($result) {
                         // Если заказ успешно сохранен
                         // Оповещаем администратора о новом заказе по почте                
                         $adminEmail = 'vitaliy030589@gmail.com';
-                        $message = '<a href="http://digital-mafia.net/admin/orders">Список заказов</a>';
+                        $message = '<a href="http://kaishi/admin/orders">Список заказов</a>';
                         $subject = 'Новый заказ!';
                         mail($adminEmail, $subject, $message);
 

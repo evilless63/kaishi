@@ -9,6 +9,8 @@
                     <td class="app_status">Статус</td>
                 </tr>
             </thead>
+            <pre>
+            </pre>
             <tbody class="application_field_body">
                 <?php foreach ($ordersListFiltered as $order): ?>
                     <tr data-href="/admin/order/view/<?php echo $order['id']; ?>">

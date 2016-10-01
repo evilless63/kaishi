@@ -24,124 +24,63 @@
                         <li>Настройки</li>
                     </ul>
                     <div class="tabs__content zakaz active">
+                    <!-- <pre>
+                        <?php var_dump($ordersListId); ?>   
+                    </pre> -->
+                    <?php 
+                        $orderCount = 1;
+                        foreach($ordersListId as $order):
+
+
+                    ?>
                         <div class="zakazRow">
-                            <div class="zakazRowNumber">Заказ # 12938738 от 12.07.2016</div>
-                            <div class="zakazRowSpoiler spoiler" data-spoiler-link="1">
+                            <div class="zakazRowNumber">Заказ # <?php echo $order['user_ordernumber']; ?> от <?php echo $order['date']; ?></div>
+                            <div class="zakazRowSpoiler spoiler" data-spoiler-link="<?php echo $orderCount; ?>">
                                 <img src="/template/images/icons/lc__arrowBottom.png" alt="">
                             </div>
-                            <div class="zakazRowStatus">Завершен</div>
+                            <div class="zakazRowStatus"><?php echo Order::getStatusText($order['user_orderstatus']); ?></div>
                             <div class="zakazRowSchedule">Оставить отзыв</div>
                         </div>
-                        <div class="zakazRow">
-                            <div class="zakazRowNumber">Заказ # 12938738 от 12.07.2016</div>
-                            <div class="zakazRowSpoiler spoiler" data-spoiler-link="2">
-                                <img src="/template/images/icons/lc__arrowBottom.png" alt="">
-                            </div>
-                            <div class="zakazRowStatus">Завершен</div>
-                            <div class="zakazRowSchedule">Оставить отзыв</div>
-                        </div>
-                        <div class="spoilerContent spoiler-content" data-spoiler-link="1">
+                        <div class="spoilerContent spoiler-content" data-spoiler-link="<?php echo $orderCount; ?>">
+                            <?php foreach ($products as $product):?>
                             <div class="zakazRowSpoilerWrap">
                                 <img src="/template/images/user/sushi/sushi.png" alt="">
                                 <div class="zakazRowSpoilerWrapName">
+                                    <?php echo $product['name']; ?>
                                 </div>
                                 <div class="zakazRowSpoilerWrapWeight">
-                                    Веса нет
+                                    
                                 </div>
                                 <div class="zakazRowSpoilerWrapCount">
-                                    2 шт
+                                    <?php echo $productsQuantity[$product['id']]; ?> шт
                                 </div>
                                 <div class="zakazRowSpoilerWrapCost">
-                                    460 р.
+                                    <?php echo $product['price']; ?> р.
                                 </div>
                                 <div class="zakazRowSpoilerWrapCart">
                                     В корзину
                                 </div>
                             </div>
-                            <div class="zakazRowSpoilerWrap">
-                                <img src="/template/images/user/sushi/sushi.png" alt="">
-                                <div class="zakazRowSpoilerWrapName">
-                                    Канада
-                                </div>
-                                <div class="zakazRowSpoilerWrapWeight">
-                                    450 гр
-                                </div>
-                                <div class="zakazRowSpoilerWrapCount">
-                                    2 шт
-                                </div>
-                                <div class="zakazRowSpoilerWrapCost">
-                                    460 р.
-                                </div>
-                                <div class="zakazRowSpoilerWrapCart">
-                                    В корзину
-                                </div>
-                            </div>
+                            <?php endforeach;?> 
                             <div class="zakazRowSpoilerDesc">
                                 <div class="zakazRowScheduleDesc">Повторить заказ</div>
                                 <span>Количество персон: 3</span>
-                                <span>АДРЕС ДОСТАВКИ: г. Самара, Авроры ул, д. 72, кв. 97, подъезд № 1, этаж. 7 1 подъезд   
-                                домофон 97</span>
-                                <span>Номер телеона: +7 9170373664</span>
-                                <span>Оплата наличными курьеру<br>  
+                                <span>АДРЕС ДОСТАВКИ: <?php echo $order['user_adress']; ?></span>
+                                <span>Номер телефона: <?php echo $order['user_phone']; ?></span>
+                                <span>Оплата <?php echo $order['user_paymethod']; ?><br>  
                                 Начислено 22 бонусов<br>
                                 Списано 0 бонусов<br>    </span>
-                                <span>ОБЩАЯ СТОИМОСТЬ ЗАКАЗА: 560 руб.</span>
+                                <span>ОБЩАЯ СТОИМОСТЬ ЗАКАЗА: <?php echo $order['user_paymethod']; ?> руб.</span>
                             </div>
                         </div>
-                        <div class="spoilerContent spoiler-content" data-spoiler-link="2">
-                            <div class="zakazRowSpoilerWrap">
-                                <img src="/template/images/user/sushi/sushi.png" alt="">
-                                <div class="zakazRowSpoilerWrapName">
-                                    Канада
-                                </div>
-                                <div class="zakazRowSpoilerWrapWeight">
-                                    450 гр
-                                </div>
-                                <div class="zakazRowSpoilerWrapCount">
-                                    2 шт
-                                </div>
-                                <div class="zakazRowSpoilerWrapCost">
-                                    460 р.
-                                </div>
-                                <div class="zakazRowSpoilerWrapCart">
-                                    В корзину
-                                </div>
-                            </div>
-                            <div class="zakazRowSpoilerWrap">
-                                <img src="/template/images/user/sushi/sushi.png" alt="">
-                                <div class="zakazRowSpoilerWrapName">
-                                    Канада
-                                </div>
-                                <div class="zakazRowSpoilerWrapWeight">
-                                    450 гр
-                                </div>
-                                <div class="zakazRowSpoilerWrapCount">
-                                    2 шт
-                                </div>
-                                <div class="zakazRowSpoilerWrapCost">
-                                    460 р.
-                                </div>
-                                <div class="zakazRowSpoilerWrapCart">
-                                    В корзину
-                                </div>
-                            </div>
-                            <div class="zakazRowSpoilerDesc">
-                                <div class="zakazRowScheduleDesc">Повторить заказ</div>
-                                <span>Количество персон: 3</span>
-                                <span>АДРЕС ДОСТАВКИ: г. Самара, Авроры ул, д. 72, кв. 97, подъезд № 1, этаж. 7 1 подъезд   
-                                домофон 97</span>
-                                <span>Номер телеона: +7 9170373664</span>
-                                <span>Оплата наличными курьеру<br>  
-                                Начислено 22 бонусов<br>
-                                Списано 0 бонусов<br>    </span>
-                                <span>ОБЩАЯ СТОИМОСТЬ ЗАКАЗА: 560 руб.</span>
-                            </div>
-                        </div>
+                    <?php 
+                    $orderCount++;
+                    endforeach; ?>    
                     </div>
+                    
                     <div class="tabs__content zakaz">
                         <div class="adressRow">
-                            <span>АДРЕС ДОСТАВКИ: г. Самара, Авроры ул, д. 72, кв. 97, подъезд № 1, этаж. 7 1 подъезд  
-                             домофон 97</span>
+                            <span>АДРЕС ДОСТАВКИ: <?php echo $order['user_adress']; ?></span>
                              <div class="adressRowEdit">
                                 <img src="/template/images/icons/lc__addresEdit.png" alt="">
                              </div>
