@@ -50,39 +50,30 @@ class SiteController
     /**
      * Action для страницы "Контакты"
      */
-    public function actionContact()
+    public function actionContacts()
     {
 
-        // Переменные для формы
-        $userEmail = false;
-        $userText = false;
-        $result = false;
+         // Получим идентификаторы и количество товаров в корзине
+        $productsInCart = Cart::getProducts();
 
-        // Обработка формы
-        if (isset($_POST['submit'])) {
-            // Если форма отправлена 
-            // Получаем данные из формы
-            $userEmail = $_POST['userEmail'];
-            $userText = $_POST['userText'];
+        if ($productsInCart) {
+            // Если в корзине есть товары, получаем полную информацию о товарах для списка
+            // Получаем массив только с идентификаторами товаров
+            $productsIds = array_keys($productsInCart);
 
-            // Флаг ошибок
-            $errors = false;
+            // Получаем массив с полной информацией о необходимых товарах
+            $products = Product::getProdustsByIds($productsIds);
 
-            // Валидация полей
-            if (!User::checkEmail($userEmail)) {
-                $errors[] = 'Неправильный email';
-            }
-
-            if ($errors == false) {
-                // Если ошибок нет
-                // Отправляем письмо администратору 
-                $adminEmail = 'php.start@mail.ru';
-                $message = "Текст: {$userText}. От {$userEmail}";
-                $subject = 'Тема письма';
-                $result = mail($adminEmail, $subject, $message);
-                $result = true;
-            }
+            // Получаем общую стоимость товаров
+            $totalPrice = Cart::getTotalPrice($products);
+        } else {
+            $totalPrice = "0";
         }
+
+
+        // Получаем информацию о пользователе из БД
+        $userId = User::getUser();
+        $user = User::getUserById($userId);
 
         // Подключаем вид
         require_once(ROOT . '/views/site/contact.php');
@@ -96,6 +87,119 @@ class SiteController
     {
         // Подключаем вид
         require_once(ROOT . '/views/site/about.php');
+        return true;
+    }
+
+    /**
+     * Action для страницы "Новости"
+     */
+    public function actionNews()
+    {
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
+
+        // Список последних товаров
+        $latestProducts = Product::getLatestProducts(6);
+
+        // Список товаров для слайдера
+        $sliderProducts = Product::getRecommendedProducts();
+
+         // Получим идентификаторы и количество товаров в корзине
+        $productsInCart = Cart::getProducts();
+
+        if ($productsInCart) {
+            // Если в корзине есть товары, получаем полную информацию о товарах для списка
+            // Получаем массив только с идентификаторами товаров
+            $productsIds = array_keys($productsInCart);
+
+            // Получаем массив с полной информацией о необходимых товарах
+            $products = Product::getProdustsByIds($productsIds);
+
+            // Получаем общую стоимость товаров
+            $totalPrice = Cart::getTotalPrice($products);
+        } else {
+            $totalPrice = "0";
+        }
+
+
+        // Получаем информацию о пользователе из БД
+        $userId = User::getUser();
+        $user = User::getUserById($userId);
+        // Подключаем вид
+        require_once(ROOT . '/views/site/news.php');
+        return true;
+    }
+
+    /**
+     * Action для страницы "Отзывы"
+     */
+    public function actionReviews()
+    {
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
+
+        // Список последних товаров
+        $latestProducts = Product::getLatestProducts(6);
+
+        // Список товаров для слайдера
+        $sliderProducts = Product::getRecommendedProducts();
+
+         // Получим идентификаторы и количество товаров в корзине
+        $productsInCart = Cart::getProducts();
+
+        if ($productsInCart) {
+            // Если в корзине есть товары, получаем полную информацию о товарах для списка
+            // Получаем массив только с идентификаторами товаров
+            $productsIds = array_keys($productsInCart);
+
+            // Получаем массив с полной информацией о необходимых товарах
+            $products = Product::getProdustsByIds($productsIds);
+
+            // Получаем общую стоимость товаров
+            $totalPrice = Cart::getTotalPrice($products);
+        } else {
+            $totalPrice = "0";
+        }
+
+
+        // Получаем информацию о пользователе из БД
+        $userId = User::getUser();
+        $user = User::getUserById($userId);
+        // Подключаем вид
+        require_once(ROOT . '/views/site/reviews.php');
+        return true;
+    }
+
+    /**
+     * Action для страницы "Доставка и оплата"
+     */
+    public function actionDelivery()
+    {
+
+         // Получим идентификаторы и количество товаров в корзине
+        $productsInCart = Cart::getProducts();
+
+        if ($productsInCart) {
+            // Если в корзине есть товары, получаем полную информацию о товарах для списка
+            // Получаем массив только с идентификаторами товаров
+            $productsIds = array_keys($productsInCart);
+
+            // Получаем массив с полной информацией о необходимых товарах
+            $products = Product::getProdustsByIds($productsIds);
+
+            // Получаем общую стоимость товаров
+            $totalPrice = Cart::getTotalPrice($products);
+        } else {
+            $totalPrice = "0";
+        }
+
+
+        // Получаем информацию о пользователе из БД
+        $userId = User::getUser();
+        $user = User::getUserById($userId);
+
+        // Подключаем вид
+        require_once(ROOT . '/views/site/delivery.php');
         return true;
     }
 

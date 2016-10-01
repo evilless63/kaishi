@@ -45,7 +45,11 @@ return array(
     'admin/index' => 'admin/index',
     'admin' => 'admin/main',
     // О магазине
-    'contacts' => 'site/contact',
+    'delivery' => 'site/delivery',
+    'shares' => 'site/shares',
+    'contacts' => 'site/contacts',
+    'news' => 'site/news',
+    'reviews' => 'site/reviews',
     'about' => 'site/about',
     // Главная страница
     'index.php' => 'site/index', // actionIndex в SiteController

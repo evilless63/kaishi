@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 body {
   background: url(../images/background.jpg); }
 
@@ -18,11 +18,11 @@ body {
 .row {
   display: flex; }
 
-.toLeft {
+/*.toLeft {
   justify-content: left; }
 
 .toRight {
-  justify-content: right; }
+  justify-content: right; }*/
 
 .toCenter {
   justify-content: center; }
@@ -883,9 +883,9 @@ main {
 /*  .mainWrap .content {
     width: 100% !important;
     padding: 15px; }*/
-    .mainWrap .content h1.headerContent, .mainWrap .content h2.headerContent, .mainWrap .content .headerContent {
+/*    .mainWrap .content h1.headerContent, .mainWrap .content h2.headerContent, .mainWrap .content .headerContent {
       padding: 0 0 15px 0;
-      font-family: candara; }
+      font-family: candara; }*/
 
 .center {
   text-align: center; }
@@ -1620,3 +1620,266 @@ catalogActive {
     font-size: 1.1em; }
   .lcContentTabs .zakaz .settingsRow input[type="checkbox"] {
     margin-right: 240px; }
+
+
+
+/*БЛОК СТИЛЕЙ СТРАНИЦЫ КОНТАКТЫ*/
+.mainWrapContacts {
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
+  .mainWrap .contentContacts {
+    width: 100%;
+    background-color: #f1f0f0;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
+    .mainWrap .content h1.contactsContentHeader {
+      font-family: candara;
+      font-size: 1.2em;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 18px 0 30px 0; }
+    .mainWrap .content .contactsContentRow {
+      display: flex;
+      justify-content: space-around; }
+      .mainWrap .content .contactsContentRow .contactsContentBlock {
+        text-align: center; }
+        .mainWrap .content .contactsContentRow .contactsContentBlock .contactsContentBlockImg {
+          width: 75px; }
+        .mainWrap .content .contactsContentRow .contactsContentBlock span {
+          font-family: arial;
+          font-size: 1.2em;
+          padding: 6px 0;
+          display: block; }
+    .mainWrap .content .contactsContentMap {
+      margin: 20px auto 270px auto;
+      width: 922px; }   
+
+
+/*БЛОК СТИЛЕЙ СТРАНИЦЫ НОВОСТИ*/
+
+.headerContentDesc {
+  padding-left: 40px !important; }
+
+span.headerContentDesc {
+  color: #353637;
+  font-size: 0.8em;
+  font-weight: 900;
+  font-family: candara;
+  text-align: left;
+  display: block;
+  padding-left: 40px !important;
+  padding-right: 100px;
+  line-height: 1.2em; }
+
+.newsContentBlock {
+  font-family: candara;
+  font-size: 1.15em;
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.25em;
+  padding-bottom: 15px; }
+  .newsContentBlock .newsContentBlockHeader {
+    color: #00b4cd;
+    padding-bottom: 5px; }
+  .newsContentBlock .newsContentBlockDesc {
+    color: #797878;
+    padding-bottom: 15px; }      
+
+
+
+/*БЛОК СТИЛЕЙ СТРАНИЦЫ ОТЗЫВЫ*/
+.mainWrap .contentFeedback {
+    width: 68.9% !important; }
+    .mainWrap .content h1.headerContent {
+      font-family: candara;
+      font-size: 1.3em;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 12px 0px; }
+    .mainWrap .content .feedbackBlock {
+      border-top: 1px solid #d9d8d8;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 3px 0 3px; }
+      .mainWrap .content .feedbackBlock .feedbackBlockImageDesc {
+        width: 70%; }
+        .mainWrap .content .feedbackBlock .feedbackBlockImageDesc .feedbackBlockImage {
+          float: left; }
+          .mainWrap .content .feedbackBlock .feedbackBlockImageDesc .feedbackBlockImage img {
+            width: 51px;
+            height: 51px;
+            border-radius: 50%; }
+        .mainWrap .content .feedbackBlock .feedbackBlockImageDesc .feedbackBlockDesc .feedbackBlockDescRow {
+          display: flex;
+          font-family: arial;
+          font-size: 0.8em;
+          text-transform: none;
+          font-weight: normal;
+          padding: 5px 0px 0px 6px; }
+          .mainWrap .content .feedbackBlock .feedbackBlockImageDesc .feedbackBlockDesc .feedbackBlockDescRow .feedbackBlockDescName {
+            color: black; }
+          .mainWrap .content .feedbackBlock .feedbackBlockImageDesc .feedbackBlockDesc .feedbackBlockDescRow .feedbackBlockDescWhere {
+            color: #999999;
+            padding: 0 0 0 5px; }
+          .mainWrap .content .feedbackBlock .feedbackBlockImageDesc .feedbackBlockDesc .feedbackBlockDescRow .feedbackBlockDescComment {
+            color: #999999; }
+      .mainWrap .content .feedbackBlock .feedbackBlockStars {
+        margin-right: 16px; }
+/*  
+     * Rating styles
+     */
+    .rating {
+      width: 135px;
+      margin: 10px auto 1em;
+      font-size: 26px;
+      overflow:hidden;
+    }
+.rating input {
+  float: right;
+  opacity: 0;
+  position: absolute;
+}
+    .rating a,
+    .rating label {
+      float:right;
+      color: #aaa;
+      text-decoration: none;
+      -webkit-transition: color .4s;
+      -moz-transition: color .4s;
+      -o-transition: color .4s;
+      transition: color .4s;
+    }
+    .rating label:hover ~ label,
+    .rating input:focus ~ label,
+    .rating label:hover,
+    .rating a:hover,
+    .rating a:hover ~ a,
+    .rating a:focus,
+    .rating a:focus ~ a   {
+      color: orange;
+      cursor: pointer;
+    }
+    .rating label ~ input[type="radio"]:checked+label {
+      color: orange;
+    }
+    input:checked {
+      color: orange;
+    }
+    .rating2 {
+      direction: rtl;
+    }
+    .rating2 a {
+      float:none
+    }       
+    
+
+/*БЛОК СТИЛЕЙ ДЛЯ СТРАНИЦЫ ДОСТАВКА И ОПЛАТА*/
+
+  .mainWrap .contentDelivery {
+    width: 100% !important;
+    padding: 15px;
+    font-family: candara; }
+/*    .mainWrap .content h1.headerContent, .mainWrap .content h2.headerContent, .mainWrap .content .headerContent {
+      padding: 0 0 15px 0; }*/
+    .mainWrap .content .deliveryContentPromo {
+      display: flex;
+      background-color: #00b4cd;
+      justify-content: space-around;
+      align-items: center;
+      border-bottom: 2px solid #222222;
+      margin: 0 -15px; }
+      .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock {
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        padding: 10px;
+        position: relative; }
+        .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .first {
+          width: 16%; }
+        .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .second {
+          width: 22%; }
+        .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .third {
+          width: 30%; }
+        .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .deliveryContentPromoDesc {
+          font-size: 1.3em; }
+          .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .deliveryContentPromoDesc span {
+            font-size: 0.6em; }
+        .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .big {
+          font-size: 1.6em;
+          font-weight: bold; }
+          .mainWrap .content .deliveryContentPromo .deliveryContentPromoBlock .big span {
+            font-size: 0.5em;
+            font-weight: normal; }
+    .mainWrap .content .deliveryContentDesc {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 15px 0 40px 0; }
+      .mainWrap .content .deliveryContentDesc .deliveryContentDescMap {
+        width: 52%;
+        box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
+      .mainWrap .content .deliveryContentDesc .deliveryContentDescText {
+        width: 42%;
+        text-align: left;
+        font-size: 0.85em;
+        color: #6d6c6c; }
+        .mainWrap .content .deliveryContentDesc .deliveryContentDescText p {
+          line-height: 1.2em;
+          padding: 0 0 15px 0; }
+    .mainWrap .content .deliveryContentCost {
+      display: flex;
+      background-color: #222222;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0 -15px 15px -15px; }
+      .mainWrap .content .deliveryContentCost .deliveryContentCostBlock {
+        text-align: center;
+        color: #00b4cd;
+        padding: 0px 10px 0px 10px;
+        position: relative;
+        display: flex;
+        align-items: center; }
+        .mainWrap .content .deliveryContentCost .deliveryContentCostBlock .deliveryContentCostDesc {
+          font-size: 0.9em; }
+    .mainWrap .content .deliveryContentCostSub {
+      text-align: left;
+      font-size: 1em;
+      color: #6d6c6c;
+      margin-bottom: 400px; }
+
+.first:before {
+  content: url(../images/icons/delivery__free.png);
+  top: 2px;
+  left: -30px;
+  width: 35px;
+  position: absolute; }
+
+.second:before {
+  content: url(../images/icons/misc__truck.svg);
+  top: 1px;
+  left: -30px;
+  width: 35px;
+  position: absolute; }
+
+.cache:before {
+  content: url(../images/icons/payment__cache.png);
+  width: 45px; }
+
+.qiwi:before {
+  content: url(../images/icons/payment__qiwi.png);
+  width: 35px; }
+
+.courerCart:before {
+  content: url(../images/icons/payment__courercart.png);
+  width: 45px; }
+
+.webMoney:before {
+  content: url(../images/icons/payment__webmoney.png);
+  width: 35px; }
+
+.bankCart:before {
+  content: url(../images/icons/payment__bankcart.png);
+  width: 45px; }
+
+.yandexMoney:before {
+  content: url(../images/icons/payment__yandexmoney.png);
+  width: 35px; }     

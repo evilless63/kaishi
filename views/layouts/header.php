@@ -25,11 +25,11 @@
             <div class="container row toSpaceBetween">
                 <div class="topMenu">
                     <ul class="row toSpaceBetween">
-                        <li><a href="dostavka.html">Доставка и оплата</a></li>
-                        <li><a href="akcii.html">Акции</a></li>
-                        <li><a href="kontakty.html">Контакты</a></li>
-                        <li><a href="otzyvy.html">Отзывы</a></li>
-                        <li><a href="novosti.html">Новости</a></li>
+                        <li><a href="/delivery">Доставка и оплата</a></li>
+                        <li><a href="/shares">Акции</a></li>
+                        <li><a href="/contacts">Контакты</a></li>
+                        <li><a href="/reviews">Отзывы</a></li>
+                        <li><a href="/news">Новости</a></li>
                     </ul>
                 </div>
                 <div class="registerAndSearch">
