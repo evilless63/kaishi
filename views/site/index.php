@@ -2,7 +2,7 @@
 
 <main>
         <div class="mainWrap container row toSpaceBetween">
-            <?php require_once('sidebar.php');?>
+            <?php include ROOT . '/views/layouts/sidebar.php'; ?>
             <div class="content">
                 <div class="saleBanner">
                     <div class="saleBannerCircle">

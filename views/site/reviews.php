@@ -2,7 +2,7 @@
 
 <main>
 	<div class="mainWrap container row toSpaceBetween">
-		<?php require_once('sidebar.php');?>
+		<?php include ROOT . '/views/layouts/sidebar.php'; ?>
 		<div class="content contentFeedback">
 			<h1 class="headerContent">Отзывы</h1>
 			<div class="feedbackBlock">

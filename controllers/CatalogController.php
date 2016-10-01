@@ -15,6 +15,9 @@ class CatalogController
         // Список категорий для левого меню
         $categories = Category::getCategoriesList();
 
+        // Список тематических блюд для левого меню
+        $thematicCategories = Thematic::getThematicList();
+
         // Список последних товаров
         $latestProducts = Product::getLatestProducts(12);
 

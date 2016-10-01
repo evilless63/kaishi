@@ -19,7 +19,7 @@
                 </div>
                 <div class="themeSets">
                     <div class="themeSetsHeader">
-                        <a href="thematic.html">Тематические наборы</a>
+                        <a href="/thematic">Тематические наборы</a>
                     </div>
                     <div class="themeSetsBlock">
                         <div class="themeSetsBlockHeader">

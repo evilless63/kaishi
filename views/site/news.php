@@ -2,7 +2,7 @@
 
 <main>
 	<div class="mainWrap mainWrapAkcii container row toSpaceBetween">
-		<?php require_once('sidebar.php');?>
+		<?php include ROOT . '/views/layouts/sidebar.php'; ?>
 		<div class="content">
 			<h1 class="headerContent">Новости</h1>
 			<div class="newsContentBlock">

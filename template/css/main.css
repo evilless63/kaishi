@@ -831,7 +831,9 @@ h1.headerContent, h2.headerContent, .headerContent {
         font-family: candara;
         font-size: 1.4em;
         font-weight: 900;
-        padding: 70px 8% 0 8%; }
+/*        padding: 70px 8% 0 8%; */
+        color: #363738 !important;
+        padding: 70px 5% 0 5% !important;}
       .akciiContent .akciiRow .akciiBlock .akciiBlockRound:hover {
         box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.7); }
     .akciiContent .akciiRow .akciiBlockDays {
@@ -1883,3 +1885,9 @@ span.headerContentDesc {
 .yandexMoney:before {
   content: url(../images/icons/payment__yandexmoney.png);
   width: 35px; }     
+
+
+
+.thematicContent {
+      width: 68.9% !important;
+}  
