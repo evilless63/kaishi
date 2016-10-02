@@ -33,7 +33,7 @@
                             <li><a href="/shares">Акции</a></li>
                             <li><a href="/reviews">Отзывы</a></li>
                             <li><a href="/contacts">Контакты</a></li>
-                            <li><a href="vakansii.html">Вакансии</a></li>
+                            <li><a href="/vacancies">Вакансии</a></li>
                             <li><a href="/delivery">Доставка и оплата</a></li>
                         </ul>
                     </div>

@@ -52,6 +52,7 @@ return array(
     'contacts' => 'site/contacts',
     'news' => 'site/news',
     'reviews' => 'site/reviews',
+    'vacancies' => 'site/vacancies',
     'about' => 'site/about',
     // Главная страница
     'index.php' => 'site/index', // actionIndex в SiteController

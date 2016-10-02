@@ -1902,3 +1902,25 @@ span.headerContentDesc {
 .thematicContent {
       width: 68.9% !important;
 }  
+
+
+
+
+/*БЛОК СТИЛЕЙ ДЛЯ СТРАНИЦЫ ВАКАНСИИ*/
+.jobContent {
+  font-family: candara;
+  font-size: 1.15em;
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.25em; }
+
+.jobContentHeader {
+  color: black;
+  padding-bottom: 10px; }
+
+.jobContentDesc {
+  color: #797878;
+  padding-bottom: 30px; }
+
+.jobContentUl {
+  color: #408e97; }
