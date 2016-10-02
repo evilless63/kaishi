@@ -50,7 +50,9 @@
       // as once we hide the text it cannot be restored.
       // Use the value of `scrollHeight`, which does not change
       // even if a height is applied through CSS.
+      
       var contentHeight = $this.prop("scrollHeight");
+      var contentHeight = contentHeight + $('.zakazRowSpoilerDesc').height();
 
       // Add padding to bottom of container only if enabled
       contentHeight = (settings.includePadding ?

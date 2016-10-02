@@ -128,7 +128,7 @@
     <script src="/template/js/jquery.scrollUp.min.js"></script>
     <script src="/template/js/price-range.js"></script>
     <script src="/template/js/jquery.prettyPhoto.js"></script>
-    <script src="/template/js/jquery-spoiler-1.3.0/jquery.spoiler.min.js"></script>
+    <script src="/template/js/jquery-spoiler-1.3.0/jquery.spoiler.js"></script>
     <script src="/template/js/main.js"></script>
     <script src="/template/js/app.js"></script>
     <script>

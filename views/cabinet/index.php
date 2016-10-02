@@ -45,7 +45,7 @@
                             $productsQuantity = json_decode($order['products'], true);
                             foreach ($products as $product):?>
                             <div class="zakazRowSpoilerWrap">
-                                <img src="/template/images/user/sushi/sushi.png" alt="">
+                                <img src="<?php echo Product::getImage($product['id']); ?>" alt="<?php echo $product['name']; ?>">
                                 <div class="zakazRowSpoilerWrapName">
                                     <?php echo $product['name']; ?>
                                 </div>
@@ -128,7 +128,7 @@
                             <input type="checkbox" value="checked" id="settingsMailRassylkaInput" name="settingsMailRassylkaInput">
                         </div> -->
                         <div class="row">
-                            <div class="passwordEdit"><a href="/cabinet/edit">Сменить пароль</a></div>
+                            <div class="passwordEdit"><a href="/cabinet/edit">Редактировать данные</a></div>
                         </div>
                     </div>
                     
