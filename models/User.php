@@ -40,7 +40,7 @@ class User
      * @param string $password <p>Пароль</p>
      * @return boolean <p>Результат выполнения метода</p>
      */
-    public static function edit($id, $name, $password, $surname, $login, $phone, $email)
+    public static function edit($userId, $name, $password, $surname, $login, $phone, $email)
     {
         // Соединение с БД
         $db = Db::getConnection();
@@ -52,7 +52,7 @@ class User
 
         // Получение и возврат результатов. Используется подготовленный запрос
         $result = $db->prepare($sql);
-        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':id', $userId, PDO::PARAM_INT);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':password', $password, PDO::PARAM_STR);
         $result->bindParam(':surname', $surname, PDO::PARAM_STR);

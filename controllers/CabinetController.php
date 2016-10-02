@@ -97,7 +97,7 @@ class CabinetController
 
             if ($errors == false) {
                 // Если ошибок нет, сохраняет изменения профиля
-                $result = User::edit($id, $name, $password, $surname, $login, $phone, $email);
+                $result = User::edit($userId, $name, $password, $surname, $login, $phone, $email);
             }
         }
 

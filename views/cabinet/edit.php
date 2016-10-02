@@ -5,6 +5,7 @@
             <div class="content lcContent">
                 <?php if ($result): ?>
                     <p>Данные отредактированы!</p>
+                    <?php var_dump($result);?>
                 <?php else: ?>
                     <?php if (isset($errors) && is_array($errors)): ?>
                         <ul>
