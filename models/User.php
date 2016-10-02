@@ -270,4 +270,31 @@ class User
         return $result->fetch();
     }
 
+
+    /**
+     * Отправка отзыва клиента со страницы личного кабинета
+     * @param string $name <p>Имя</p>
+     * @param string $email <p>E-mail</p>
+     * @param string $password <p>Пароль</p>
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function addFeedback($name, $image, $date, $text, $mark)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'INSERT INTO feedback (name, image, `date`, `text`, mark)'
+                . 'VALUES (:name, :image, :date, :text, :mark)';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':image', $image, PDO::PARAM_STR);
+        $result->bindParam(':date', $date, PDO::PARAM_STR);
+        $result->bindParam(':text', $text, PDO::PARAM_STR);
+        $result->bindParam(':mark', $mark, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
 }

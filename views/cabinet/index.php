@@ -42,6 +42,7 @@
                             <?php 
 
                             $products = Product::getProdustsByIds(array_keys(json_decode($order['products'], true)));
+                            $productsQuantity = json_decode($order['products'], true);
                             foreach ($products as $product):?>
                             <div class="zakazRowSpoilerWrap">
                                 <img src="/template/images/user/sushi/sushi.png" alt="">
@@ -93,6 +94,10 @@
                         </div>
                     </div>
                     <div class="tabs__content zakaz">
+                        <div class="settingsRow login">
+                            <div class="settingsLogin">Логин</div>
+                            <input type="text" value="<?php echo $user['login'];?>" id="settingsLoginInput" name="settingsLoginInput">
+                        </div>
                         <div class="settingsRow name">
                             <div class="settingsName">Имя</div>
                             <input type="text" value="<?php echo $user['name'];?>" id="settingsNameInput" name="settingsNameInput">
@@ -101,6 +106,11 @@
                             <div class="settingsSurname">Фамилия</div>
                             <input type="text" value="<?php echo $user['surname'];?>" id="settingsSurnameInput" name="settingsSurnameInput">
                         </div>
+                        <div class="settingsRow phone">
+                            <div class="settingsPhone">Телефон</div>
+                            <input type="text" value="<?php echo $user['phone'];?>" id="settingsPhoneInput" name="settingsPhoneInput">
+                        </div>
+
                         <!-- <div class="settingsRow bday">
                             <div class="settingsBday">День рождения</div>
                             <input type="text" value="" id="settingsBdayInput" name="settingsBdayInput">
@@ -126,5 +136,25 @@
             </div>
         </div>
     </main>
-
+    <div class="feedbackLCwrapper">
+        <div class="feedbackLCcontent">
+            <div class="feedbackLCuserinfo">
+                <img class="feedbackLCimage" src="<?php echo $user['image'];?>" alt="Фотография <?php echo $user['name'];?>">
+                <div class="feedbackLCname" id="feedbackLCname"><?php echo $user['name'];?></div>
+            </div>
+            <span>Текст отзыва</span>
+            <textarea name="feedbackLCtext" class="feedbackLCtext" id="feedbackLCtext" cols="30" rows="10"></textarea>
+            <span>Поставьте оценку</span>
+            <select name="feedbackLCmark" class="feedbackLCmark" id="feedbackLCmark">
+                <option value="1">Ужасно</option>
+                <option value="2">Плохо</option>
+                <option value="3">Сойдет</option>
+                <option value="4">Хорошо</option>
+                <option value="5">Отлично</option>
+            </select>
+            <div class="feedbackLCsend">
+                Отправить
+            </div>
+        </div>
+    </div>    
 <?php include ROOT . '/views/layouts/footer.php'; ?>

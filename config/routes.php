@@ -25,6 +25,7 @@ return array(
     'user/logout' => 'user/logout',
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
+    'cabinet/addfeedback' => 'cabinet/addfeedback',
     // Управление товарами:    
     'admin/product/create' => 'adminProduct/create',
     'admin/product/update/([0-9]+)' => 'adminProduct/update/$1',

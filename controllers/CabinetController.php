@@ -98,4 +98,21 @@ class CabinetController
         return true;
     }
 
+    // Отправка отзыва клиента со страницы личного кабинета
+
+    public function actionAddfeedback()
+    {
+
+        if(isset($_POST['goFeedback'])) {
+            $name = $_POST['name'];
+            $image = $_POST['image'];
+            $date = date("d.m.y");
+            $text = $_POST['text'];
+            $mark = $_POST['mark'];
+
+            $result = User::addFeedback($name, $image, $date, $text, $mark);
+        }
+
+    }
+
 }

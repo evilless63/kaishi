@@ -193,6 +193,67 @@ $('.zakazRowScheduleDesc').click(function(){
 	window.location.href = "/cart";
 });
 
+//Оставить отзыв из личного кабинета
+
+$('.zakazRowSchedule').click(function(){
+
+	$('.feedbackLCcontent').css('display', 'flex');
+	var heightR = $(document).height();// высота экрана
+	var widthR = $(window).width();// ширина экрана
+
+	$('.feedbackLCwrapper').css({'display':'block','width':widthR,'height':heightR});
+
+	$('.feedbackLCcontent').css({
+		position:'absolute',
+		left: ($(document).width() - $('.feedbackLCcontent').outerWidth())/2,
+		top: ($(document).height() - $('.feedbackLCcontent').outerHeight())/2
+	}); 
+
+	$('.feedbackLCsend').click(function(){
+		var name = $('.feedbackLCname').text();
+		var image = $('.feedbackLCimage').attr('src');
+		var text = $('.feedbackLCtext').val();
+		var mark = $('.feedbackLCmark').val();
+
+		if (text !=="" && mark !== "" ) {
+
+			$.post(
+			  "/cabinet/addfeedback",
+			  {
+			  	goFeedback: 1,
+			    name: name,
+			    image: image,
+			    text: text,
+			    mark: mark,
+			  },
+			  function onAjaxSuccess(data)
+			{
+			  // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+			  alert("Ваш отзыв успешно отправлен");
+			  // Возвращаем пользователя в корзину
+		      // location.reload();
+			}
+			);
+
+		} else {
+
+			alert("Заполните поля !");
+
+		}
+	});
+
+});
+
+$(document).mouseup(function(e){ // событие клика по веб-документу
+	var div = $(".feedbackLCcontent"); // тут указываем ID элемента
+	if (!div.is(e.target) // если клик был не по нашему блоку
+	    && div.has(e.target).length === 0) { // и не по его дочерним элементам
+		div.hide(); // скрываем его
+		$('.feedbackLCwrapper').css('display', 'none');
+	}
+});
+
+
 
 //Регистрация нового пользователя
 

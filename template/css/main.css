@@ -1924,3 +1924,82 @@ span.headerContentDesc {
 
 .jobContentUl {
   color: #408e97; }
+
+
+
+.feedbackLCwrapper {
+  display: none;
+  position: absolute;
+  background-color: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+}  
+
+.feedbackLCcontent {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  height: 450px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px 4px rgba(0,0,0,0.3);
+}
+
+.feedbackLCuserinfo {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.feedbackLCuserinfo img {
+  border-radius: 50%;
+  width: 51px;
+  height: 51px;
+}
+
+.feedbackLCname {
+  font-family: arial;
+  font-size: 1.6em;
+  padding: 13px 7px;
+  margin-right: 20px;
+}
+
+.feedbackLCcontent span {
+  font-family: arial;
+  font-size: 1.3em;
+  padding: 7px 7px;
+  margin-right: 20px; 
+}
+
+.feedbackLCtext {
+  width: 80%;
+  margin: 10px 0px;
+  font-family: arial;
+  padding: 7px 7px;
+}
+
+.feedbackLCmark {
+  font-family: arial;
+  font-size: 1.3em;
+  padding: 7px 7px;
+  margin: 10px 0;
+}
+
+.feedbackLCsend{
+    background-image: linear-gradient(-71deg, #00bacd, #02808e);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    text-transform: uppercase;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 12px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
