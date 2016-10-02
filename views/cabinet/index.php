@@ -57,7 +57,7 @@
                                 <div class="zakazRowSpoilerWrapCost">
                                     <?php echo $product['price']; ?> р.
                                 </div>
-                                <div class="zakazRowSpoilerWrapCart">
+                                <div class="zakazRowSpoilerWrapCart add-to-cart" data-id="<?php echo $product['id']; ?>" >
                                     В корзину
                                 </div>
                             </div>

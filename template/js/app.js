@@ -174,6 +174,26 @@ $('.ContentDescPromoBlockTocart').children('span').click(function(){
 
 });
 
+//Повторить заказ из кабинета пользователя
+$('.zakazRowScheduleDesc').click(function(){
+	var id = [];
+	var i = 0;
+
+	$(this).parent('.zakazRowSpoilerDesc').siblings('.zakazRowSpoilerWrap').each(function(){
+		id.push($(this).children('.add-to-cart').attr('data-id'));
+	});
+
+	for(i; i < id.length; i++) {
+		$.post("/cart/addAjax/"+id[i], {}, function (data) {
+	        $("#cart-count").html(data);
+	    });
+	}
+	
+	alert("Товары успешно добавлены в корзину, вы будете перенаправлены в оформление заказа.");
+	window.location.href = "/cart";
+});
+
+
 //Регистрация нового пользователя
 
 $('.registrationFormSubmit').click(function(){
