@@ -31,7 +31,7 @@ body {
   justify-content: space-between; }
 
 .toSpaceAround {
-  justify-content: space-around; }
+  justify-content: space-around !important; }
 
 .alignCenter {
   align-items: center; }
@@ -292,11 +292,16 @@ main {
       text-align: left;
       padding: 3px 15px 9px 15px; }
 
-.mainWrap .content {
-  width: 67%; }
+
   .mainWrap .content .saleBanner {
     padding: 40px 0;
     position: relative; }
+    a.linkFromMainPage {
+      color: #000;
+    }
+    .saleBanner > a > img {
+      width: 100%;
+    }
     .mainWrap .content .saleBanner .saleBannerCircle {
       position: relative;
       border-radius: 50%;
@@ -387,6 +392,10 @@ main {
       padding: 25px 30px;
       top: 30%;
       left: 17%; }
+
+      .thematic > a > img {
+        width: 100%;
+      }
       .mainWrap .content .thematic .thematicWrapper .thematicHeader {
         font-size: 1.6em;
         font-weight: 900; }
@@ -513,19 +522,19 @@ footer {
   overflow: hidden;
   display: none; }
   .loginWrapper .loginArea {
-    width: 760px;
+/*    width: 760px;*/
+    width: 380px;  
     margin: 90px auto 0 auto;
     background-color: white;
     display: flex;
     border-radius: 5px;
     position: relative; }
     .loginWrapper .loginArea .loginForm {
-      width: 50%;
+      width: 100%;
       border-right: 1px solid #eeeeee;
       padding: 20px 26px;
       background: #fff;
-      border-bottom-left-radius: 5px;
-      border-top-left-radius: 5px;
+        border-radius: 5px;
       display: flex;
       flex-direction: column;
       align-items: center; }
@@ -658,19 +667,24 @@ footer {
   overflow: hidden;
   display: none; }
   .registrationWrapper .registrationArea {
-    width: 760px;
+/*    width: 760px;*/
+      width: 380px;
     margin: 90px auto 0 auto;
     background-color: white;
     display: flex;
     border-radius: 5px;
     position: relative; }
     .registrationWrapper .registrationArea .registrationForm {
-      width: 50%;
+/*      width: 50%;*/
+        width: 100%;
       border-right: 1px solid #eeeeee;
       padding: 20px 26px;
       background: #fff;
+/*
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;
+*/
+      border-radius: 5px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -804,11 +818,19 @@ h1.headerContent, h2.headerContent, .headerContent {
 
 .howItworks {
   font-size: 1.1em;
-  padding: 22px 100px; }
+/*  padding: 22px 100px;*/ }
+
+.actionsContent {
+  width: 68.9% !important;
+}
 
 .akciiContent {
   max-height: 940px;
-  overflow: auto; }
+  overflow: auto; 
+text-align: center;}
+.akciiContent > img {
+  width: 100%;
+}
   .akciiContent .akciiRowDays {
     margin: 25px 0 0 0;
     width: 92%; }
@@ -816,6 +838,9 @@ h1.headerContent, h2.headerContent, .headerContent {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px; }
+  .akciiContent .akciiRowActions {
+    justify-content: space-between;
+  }  
     .akciiContent .akciiRow .akciiBlock {
       color: black;
       text-align: center; }
@@ -833,7 +858,7 @@ h1.headerContent, h2.headerContent, .headerContent {
         font-weight: 900;
 /*        padding: 70px 8% 0 8%; */
         color: #363738 !important;
-        padding: 70px 5% 0 5% !important;}
+    padding: 50px 5% 0 5% !important;}
       .akciiContent .akciiRow .akciiBlock .akciiBlockRound:hover {
         box-shadow: 0px 0px 7px rgba(255, 255, 255, 0.7); }
     .akciiContent .akciiRow .akciiBlockDays {
@@ -859,22 +884,75 @@ h1.headerContent, h2.headerContent, .headerContent {
           font-size: 0.9em;
           line-height: 1.1em; }
 
-.akciiDesc {
-  width: 680px !important; }
+/*.akciiDesc {
+  width: 680px !important; }*/
+
+
+.mainWrapAkcii {
+  background-color: #f1f0f0;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
+
+.akciiBlockRound {
+  color: #363738 !important;
+  padding: 70px 5% 0 5% !important; }
+
+
 
 .headerContentDesc {
-  padding-left: 40px !important; }
+  color: #757374 !important;
+  font-size: 0.85em !important;
+  line-height: 1.3em !important;
+  text-transform: uppercase !important;
+  padding-right: 20px !important; }
 
-span.headerContentDesc {
-  color: #353637;
-  font-size: 0.8em;
-  font-weight: 900;
-  font-family: candara;
-  text-align: left;
-  display: block;
-  padding-left: 40px !important;
-  padding-right: 100px;
-  line-height: 1.2em; }
+.headerContentDescImg {
+  padding-left: 0px !important; }
+
+/*.akciiDesc {
+  width: 685px !important; }*/
+
+.ContentDescPromo {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 15px;
+      align-items: baseline; }
+  .ContentDescPromo .ContentDescPromoBlock, .ContentDescPromoBlock1 {
+    width: 20%; 
+      text-align: center;
+    margin-top: 15px;}
+    .ContentDescPromo .ContentDescPromoBlock .ContentDescPromoBlockHeader {
+      text-transform: uppercase;
+      color: black;
+      font-size: 0.85em;
+      font-weight: 900;
+      font-family: candara;
+      text-align: center;
+          min-height: 18px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .ContentDescPromo .ContentDescPromoBlock .ContentDescPromoBlockDesc {
+      padding-top: 10px;
+      font-size: 0.8em;
+      font-family: candara;
+      color: #757374;
+      line-height: 1.2em;
+      text-align: center; }
+    .ContentDescPromo .ContentDescPromoBlock1 .ContentDescPromoBlockTocart, .ContentDescPromoBlockTocartThematic {
+      margin: 10px auto;
+      text-align: center; }
+      .ContentDescPromo .ContentDescPromoBlock .ContentDescPromoBlockTocart span {
+        background-image: linear-gradient(-71deg, #00bacd, #02808e);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+        color: white;
+        text-transform: uppercase;
+        font-family: arial;
+        font-weight: bold;
+        font-size: 0.9em;
+        padding: 8px 10px;
+        border-radius: 5px;
+        cursor: pointer; }
 
 main {
   margin-bottom: 0px; }
@@ -930,7 +1008,7 @@ main {
   .sushiBlock .sushiBlockDesc {
     font-family: candara;
     color: #353637;
-    padding: 9px 0;
+    padding: 9px 5px;
     font-size: 0.8em;
     font-weight: 900;
     height: 50px;
@@ -1049,9 +1127,10 @@ main {
 .to-right {
   justify-content: flex-end; }
 
-.ContentDescPromoBlockTocart {
+.ContentDescPromoBlockTocart, .ContentDescPromoBlockTocartThematic {
+  margin-top: 14px;
   text-align: center; }
-  .ContentDescPromoBlockTocart span {
+  .ContentDescPromoBlockTocart span, .ContentDescPromoBlockTocartThematic span {
     background-image: linear-gradient(-71deg, #00bacd, #02808e);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
     color: #fff;
@@ -1069,7 +1148,8 @@ main {
     border-bottom: 2px solid #007f8d;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+/*    align-items: flex-start;*/
+    align-items: center;
     padding: 12px 0px;
     font-family: arial;
     font-size: 0.8em;
@@ -1098,7 +1178,7 @@ main {
         box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.3);
         text-align: center; }
     .cartProductsBlock .cartProductsBlockContent .cartProductsBlockCost {
-      margin-top: 10px; 
+/*      margin-top: 10px; */
     width: 40px;
     text-align: center;}
   .cartProductsBlock .cartProductsBlockComment {
@@ -1111,7 +1191,7 @@ main {
       cursor: pointer;
       font-weight: bold;
       margin-bottom: 6px; }
-    .cartProductsBlock .cartProductsBlockComment textarea.addCommentField {
+    .cartProductsBlock .cartProductsBlockComment textarea.addCommentField, addAdressField {
       box-shadow: inset 1px 0px 1px 0px rgba(0, 0, 0, 0.3);
       border-radius: 5px;
       display: none; }
@@ -1339,15 +1419,16 @@ catalogActive {
           align-items: center; }
           .sushiProfailWrapper .sushiProfailArea .tabs .tabs__content .tabs__contentDesc span {
             /*display: block;*/
-            font-size: 0.8em;
-            font-family: arial;
-            padding: 3px 0;
-            width: 350px;
+              font-size: 1em;
+              font-family: arial;
+              padding: 15px 0 0 0;
+              width: 355px;
             color: #4e4c62; }
         .sushiProfailWrapper .sushiProfailArea .tabs .tabs__content .tabs__contentBuy {
-          width: 34.48276%; }
+          width: 34.48276%;
+              text-align: center; }
           .sushiProfailWrapper .sushiProfailArea .tabs .tabs__content .tabs__contentBuy span {
-            font-size: 0.55em;
+            font-size: 1em;
             color: #4e4c62;
             font-family: arial;
             text-align: center; }
@@ -1398,6 +1479,7 @@ catalogActive {
 .mainWrapCart .content {
   width: 100% !important;
   padding: 15px;
+  margin-right: 0px !important;
 }
 
 
@@ -1593,7 +1675,7 @@ overflow: hidden;}
 .lcContentTabs .zakaz .adressRow {
   display: flex;
   justify-content: space-around;
-  padding: 20px 65px 20px 55px;
+  padding: 30px 65px 20px 55px;
   margin: 0 -15px 0 -15px;
   color: #353636;
   background: #fff;
@@ -1614,8 +1696,9 @@ overflow: hidden;}
 
 .lcContentTabs .zakaz .row {
   padding: 20px 65px 20px 55px;
-  margin: 0 -15px 0 -15px; }
-  .lcContentTabs .zakaz .row .adressAdd, .lcContentTabs .zakaz .row .passwordEdit {
+  margin: 0 -15px 0 -15px;
+      align-items: center; }
+  .lcContentTabs .zakaz .row .adressAdd, .lcContentTabs .zakaz .row .passwordEdit, .adressAdd {
     background-image: linear-gradient(-71deg, #00bacd, #02808e);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
     color: #fff;
@@ -1627,6 +1710,10 @@ overflow: hidden;}
     color: #fff;
     display: block;
     width: 200px; }
+
+  .adressAdd {
+    margin: 0 0 0 40px;
+  }
 
 .passwordEdit a {
   color: #fff;
@@ -1671,7 +1758,8 @@ overflow: hidden;}
 .mainWrapContacts {
   box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
   .mainWrap .contentContacts {
-    width: 100%;
+    width: 100% !important;
+    margin-right: 0px !important;
     background-color: #f1f0f0;
     box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
     .mainWrap .content h1.contactsContentHeader {
@@ -1701,7 +1789,7 @@ overflow: hidden;}
 /*БЛОК СТИЛЕЙ СТРАНИЦЫ НОВОСТИ*/
 
 .headerContentDesc {
-  padding-left: 40px !important; }
+  /*padding-left: 40px !important;*/ }
 
 span.headerContentDesc {
   color: #353637;
@@ -1710,7 +1798,7 @@ span.headerContentDesc {
   font-family: candara;
   text-align: left;
   display: block;
-  padding-left: 40px !important;
+/*  padding-left: 40px !important;*/
   padding-right: 100px;
   line-height: 1.2em; }
 
@@ -1772,8 +1860,8 @@ span.headerContentDesc {
      * Rating styles
      */
     .rating {
-      width: 135px;
-      margin: 10px auto 1em;
+      width: 150px;
+      /*margin: 10px auto 1em;*/
       font-size: 26px;
       overflow:hidden;
     }
@@ -1932,6 +2020,7 @@ span.headerContentDesc {
 
 .thematicContent {
       width: 68.9% !important;
+          margin-right: 15px !important;
 }  
 
 
@@ -2034,3 +2123,116 @@ span.headerContentDesc {
     cursor: pointer;
     color: #fff;
 }
+
+.cartPaymentBlockMiscImg {
+  width: 50px;
+}
+
+.sushiBlockSlider {
+    width: 155px !important;
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    min-height: 240px !important;
+    margin: 2px 0.135%;
+}
+
+.sushiBlockImage {
+    cursor: pointer;
+}
+
+.sidebarThematicImage {
+  width: 241px;
+    height: 160px;
+}
+
+.thematicIndexImage {
+   width: 306px;
+    height: 206px; 
+}
+
+.mainWrap .content {
+  width: 67.9%; 
+margin-right: 15px;}
+
+.contentMainPage {
+  width: 67.9%; !important;
+}
+
+
+.checkout {
+      font-size: 1.5em;
+    font-weight: bold;
+    color: #4e4c62;
+    font-family: arial;
+}
+
+.special, .mobileHeader, .mobileFooter,
+.topAlert, .catalogMobile, .indexMobile, .chooseProucts,
+.choosePayment, .actionMobile, .actionMoreMobile, .deliveryMobile, .thematicMobile, 
+.thematicMoreMobile {
+  display: none;
+}
+
+.mobileHeader .headerMenuIcon {
+    position: relative;
+    z-index: 2500;
+}
+.sidebarPopUpWrapper {
+   display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1500;
+}
+
+.sidebarPopUp {
+  display: none;
+  position: fixed;
+  top: 35px;
+  left: 0px;
+  z-index: 2000;
+}
+
+.sidebarPopUp > .productMenu {
+  position: relative;
+}
+
+.sidebarPopUp > .productMenu > ul {
+  margin: 10px 0;
+  background: #f9f9f9;
+}
+
+.sidebarPopUp > .productMenu > ul > li {
+  margin: 10px 0;
+}
+
+.sidebarPopUp > .productMenu > ul > li > a {
+    font-size: 1.4em;
+    padding: 5px 10px 5px 5px;
+    color: #1d1d1b;
+    font-weight: bold;
+    font-family: arial;
+}
+
+.colored {
+  color: #ff8400;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+}
+
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1em;
+}
+
+.rating > span.m:before {
+   content: "\2605";
+   position: absolute;
+   color: #e89e10;;
+}
+

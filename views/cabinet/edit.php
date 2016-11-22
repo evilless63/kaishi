@@ -5,7 +5,6 @@
             <div class="content lcContent">
                 <?php if ($result): ?>
                     <p>Данные отредактированы!</p>
-                    <?php var_dump($result);?>
                 <?php else: ?>
                     <?php if (isset($errors) && is_array($errors)): ?>
                         <ul>
@@ -44,6 +43,7 @@
                                 </div>
                                 <div class="row">
                                     <input type="submit" name="submit" class="passwordEdit" value="Сохранить" />
+                                    <a class="passwordEdit" href="/cabinet">Вернуться</a>
                                 </div>
                             </div>
                         </form>

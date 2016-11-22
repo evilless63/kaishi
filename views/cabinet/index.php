@@ -14,7 +14,15 @@
                     </div>
                     <div class="lcContentBlock">
                         <img class="lcContentBlockImg" src="/template/images/icons/lc__countZakaz.png" alt="">
-                        <div class="lcContentBlockDesc">кол-во заказов : <?php echo $ordersCount["COUNT(*)"]?></div>
+                        <div class="lcContentBlockDesc">кол-во заказов : 
+                        <?php 
+                            if(!isset($ordersCount["COUNT(*)"])) {
+                                echo "0";
+                            } else {
+                                echo $ordersCount["COUNT(*)"];
+                            } 
+                        ?>
+                        </div>
                     </div>
                 </div>
                 <div class="lcContentTabs tabs">
@@ -81,15 +89,25 @@
                     
                     <div class="tabs__content zakaz">
                         <div class="adressRow">
-                            <span>АДРЕС ДОСТАВКИ: <?php echo $order['user_adress']; ?></span>
-                             <div class="adressRowEdit">
-                                <img src="/template/images/icons/lc__addresEdit.png" alt="">
-                             </div>
-                             <div class="adressRowDelete">
-                                <img src="/template/images/icons/misc__delete.svg" alt="">
-                             </div>
+                            <span>АДРЕС ДОСТАВКИ: 
+                            <?php 
+                                if (!isset($order)) { 
+                                    echo "Не указано ни одного адреса, желаете создать новый ?</span>";
+                                } else {
+                                    echo $order['user_adress'].  
+                                    '</span>'.
+                                    '<div class="adressRowEdit">'.
+                                        '<img src="/template/images/icons/lc__addresEdit.png" alt="">'.
+                                    '</div>'.
+                                    '<div class="adressRowDelete">'.
+                                        '<img src="/template/images/icons/misc__delete.svg" alt="">'.
+                                    '</div>';
+                                }   
+                            ?>
+                            
                         </div>
                         <div class="row">
+                            <textarea rows="5" name="userComment" cols="60" class="addAdressField" placeholder="Укажите Ваш адрес..."></textarea>
                             <div class="adressAdd">Добавить адрес</div>
                         </div>
                     </div>

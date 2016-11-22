@@ -2,7 +2,7 @@
 <main>
         <div class="mainWrap container row toSpaceBetween">
             <?php include ROOT . '/views/layouts/sidebar.php'; ?>
-            <div class="content">
+            <div class="content contentMainPage">
                 <div class="saleBanner">
                     <div class="saleBannerCircle">
                         <div class="saleBannerCircleHeader">
@@ -21,7 +21,7 @@
                     </div>
                     <img src="images/user/mainBanner.jpg" alt="25% СКИДКА НА ВСЕ РОЛЛЫ">
                 </div>
-                <div class="newProducts row toSpaceBetween">
+                <div class="newProducts row">
                     <div class="areaBig">
                         <div class="areaBigTriangle">
                             <div class="areaBigText">

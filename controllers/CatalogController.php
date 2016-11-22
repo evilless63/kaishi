@@ -55,8 +55,25 @@ class CatalogController
         $categories = Category::getCategoriesList();
 
         // Список товаров в категории
-        $categoryProducts = Product::getProductsListByCategory($categoryId, $page);
+        if(date("l") == "Monday") {
+             $cProducts = Product::getProductsListByCategory($categoryId, $page);
+             $categoryProducts = array();
+                 foreach($cProducts as $product) {
+                     if($product["product_type"] = "roll") {
+                      $product["price"] = $product["price"] - ($product["price"]*25/100);                  
+                  } 
 
+                  array_push($categoryProducts, $product);
+
+              } 
+          } else {
+            $categoryProducts = Product::getProductsListByCategory($categoryId, $page);
+          }
+        
+
+
+        $thematicCategories = Thematic::getThematicList();
+        
         // Общее количетсво товаров (необходимо для постраничной навигации)
         $total = Product::getTotalProductsInCategory($categoryId);
 

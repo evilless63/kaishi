@@ -7,68 +7,37 @@
 			<h1 class="headerContent">Тематические наборы</h1>
 			<div class="akciiContent">
 				<div class="akciiRow">
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Ужин по-мексикански !</div>
-						<img src="/template/images/user/thematic/mexican.jpg" alt="Ужин по-мексикански !">
+				<?php 
+				$counter = 1;
+				foreach ($thematicCategories as $thematicItem): 
+				?>
+					<a class="akciiBlock" href="/thematicItem/<?php echo $thematicItem['id']?>">
+						<div class="akciiBlockRound"><?php echo $thematicItem['name']?></div>
+						<img class="thematicIndexImage" src="<?php echo Product::getThematicImage($thematicItem['id']); ?>" alt="<?php echo $thematicItem['name']?>">
 					</a>
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Романтический ужин</div>
-						<img src="/template/images/user/thematic/romantic.jpg" alt="Романтический ужин">
-					</a>
-				</div>
-				<div class="akciiRow">
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Ужин по-мексикански !</div>
-						<img src="/template/images/user/thematic/mexican.jpg" alt="Ужин по-мексикански !">
-					</a>
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Романтический ужин</div>
-						<img src="/template/images/user/thematic/romantic.jpg" alt="Романтический ужин">
-					</a>
-				</div>
-				<div class="akciiRow">
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Ужин по-мексикански !</div>
-						<img src="/template/images/user/thematic/mexican.jpg" alt="Ужин по-мексикански !">
-					</a>
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Романтический ужин</div>
-						<img src="/template/images/user/thematic/romantic.jpg" alt="Романтический ужин">
-					</a>
-				</div>
-				<div class="akciiRow">
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Ужин по-мексикански !</div>
-						<img src="/template/images/user/thematic/mexican.jpg" alt="Ужин по-мексикански !">
-					</a>
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Романтический ужин</div>
-						<img src="/template/images/user/thematic/romantic.jpg" alt="Романтический ужин">
-					</a>
-				</div>
-				<div class="akciiRow">
-					<a class="akciiBlock" href="akcii_podrobn.html">
-						<div class="akciiBlockRound">Ужин по-мексикански !</div>
-						<img src="/template/images/user/thematic/mexican.jpg" alt="Ужин по-мексикански !">
-					</a>
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Романтический ужин</div>
-						<img src="/template/images/user/thematic/romantic.jpg" alt="Романтический ужин">
-					</a>
-				</div>
-				<div class="akciiRow">
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Ужин по-мексикански !</div>
-						<img src="/template/images/user/thematic/mexican.jpg" alt="Ужин по-мексикански !">
-					</a>
-					<a class="akciiBlock" href="thematic_profile.html">
-						<div class="akciiBlockRound">Романтический ужин</div>
-						<img src="/template/images/user/thematic/romantic.jpg" alt="Романтический ужин">
-					</a>
-				</div>
+				<?php 
+				$counter ++;
+				endforeach;
+				if ($counter > 2 ) {
+					echo "</div>";
+				}
+				?>
 			</div>
 		</div>
 	</div>
 </main>
-
+<div class="thematicMobile">
+			<div class="content">
+				<div class="akciiContent">
+				<?php foreach ($thematicCategories as $thematicItem):?>
+				 	<div class="akciiRow thematicRowMobile">
+						<a class="akciiBlock" href="/thematicItem/<?php echo $thematicItem['id']?>">
+							<div class="akciiBlockRound"><?php echo $thematicItem['name']?></div>
+							<img class="thematicIndexImage" src="<?php echo Product::getThematicImage($thematicItem['id']); ?>" alt="<?php echo $thematicItem['name']?>">
+						</a>
+					</div>
+				<?php endforeach; ?>
+				</div>
+			</div>
+	</div>
 <?php include ROOT . '/views/layouts/footer.php'; ?>	

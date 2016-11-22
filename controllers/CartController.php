@@ -72,20 +72,66 @@ class CartController
     {
         // Список категорий для левого меню
         $categories = Category::getCategoriesList();
-
+        
         // Получим идентификаторы и количество товаров в корзине
         $productsInCart = Cart::getProducts();
 
+        $productCount = Product::getProductCount();
+
+        //Получаем рандомный товар 1
+        $productCountOne = rand(0, $productCount);
+        $simpleProduct = Product::getRandomProduct($productCountOne);
+
+        //Получаем перечень рандомных товаров
+        // $randomCounts = array();
+        // for($i=0 ; $i<12 ; $i++) {
+        //     $randomCounts[$i] = $productCountOne; 
+        //     $productCountOne++;      
+        // } 
+
+        $randomProductsList = Product::getLatestProducts(12);
+        
+        // Получим идентификаторы и количество товаров в корзине
+        $productsInCart = Cart::getProducts();
+        
         if ($productsInCart) {
             // Если в корзине есть товары, получаем полную информацию о товарах для списка
             // Получаем массив только с идентификаторами товаров
             $productsIds = array_keys($productsInCart);
 
             // Получаем массив с полной информацией о необходимых товарах
+            // Список товаров в категории
+        if(date("l") == "Monday") {
+
+            $totalNoactionPrice = "0";
+             $product_action = true;   
+             $cProducts = Product::getProdustsByIds($productsIds);
+             $products = array();
+                foreach($cProducts as $product) {
+                    if($product["product_type"] = "roll") {
+                      // $product["price"] = $product["price"] - ($product["price"]*25/100);  
+                      $product["price_fin"] = $product["price"]; 
+                      $product["price"] = $product["price"] - ($product["price"]*25/100);               
+                    } else {
+                      $product["price_fin"] = $product["price"];   
+                    }
+
+                  array_push($products, $product);
+
+                  $totalNoactionPrice += $product["price_fin"] * $productsInCart[$product['id']];
+                } 
+
+              
+
+          } else {
+            $product_action = false;
             $products = Product::getProdustsByIds($productsIds);
+          }
+            
 
             // Получаем общую стоимость товаров
             $totalPrice = Cart::getTotalPrice($products);
+            $product_discount = $totalNoactionPrice - $totalPrice;
         } else {
             $totalPrice = "0";
         }

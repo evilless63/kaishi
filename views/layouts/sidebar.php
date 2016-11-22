@@ -7,8 +7,7 @@
                     $count = 0;
                     foreach ($categories as $categoryItem): ?>
                         <li>
-                        <a class="<?php echo $arrayAclass[$count]; ?>" href="/category/<?php echo $categoryItem['id']; ?>"
-                                           class="<?php if ($categoryId == $categoryItem['id']) echo 'catalogActive'; ?>">                                                                                    
+                        <a class="<?php echo $arrayAclass[$count]; ?>" href="/category/<?php echo $categoryItem['id']; ?>">                                                                                    
                                <?php echo $categoryItem['name']; ?>
                         </a>
                         </li>
@@ -21,35 +20,22 @@
                     <div class="themeSetsHeader">
                         <a href="/thematic">Тематические наборы</a>
                     </div>
+                    <?php foreach ($thematicCategories as $thematicItem): ?>
                     <div class="themeSetsBlock">
                         <div class="themeSetsBlockHeader">
-                            <a href="">Романтический ужин</a>
+                            <a href="/thematicItem/<?php echo $thematicItem['id']?>"><?php echo $thematicItem['name']?></a>
                         </div>
-                        <a href="thematic_profile.html" class="themeSetsBlockImage">
+                        <a href="/thematicItem/<?php echo $thematicItem['id']?>" class="themeSetsBlockImage">
                             <div class="themeSetsBlockImageCover">
                                 <span>Купить</span>
                             </div>
-                            <img src="/template/images/user/themeSetsBlockImage.jpg" alt="Романтический ужин">
-                            <p>1150 р.</p>
+                            <img class="sidebarThematicImage" src="<?php echo Product::getThematicImage($thematicItem['id']); ?>" alt="<?php echo $thematicItem['name']?>">
+                            <!-- <p><?php echo $thematicItem['cost']?></p> -->
                         </a>
                         <p class="themeSetsBlockDesc">
-                            Принцип работы набора очень прост. В корпус вставляется поддон нужной 
+                            <?php echo mb_strimwidth($thematicItem['description'], 0, 65, "...");?>
                         </p>
                     </div>
-                    <div class="themeSetsBlock">
-                        <div class="themeSetsBlockHeader">
-                            <a href="thematic_profile.html">Романтический ужин</a>
-                        </div>
-                        <a href="" class="themeSetsBlockImage">
-                            <div class="themeSetsBlockImageCover">
-                                <span>Купить</span>
-                            </div>
-                            <img src="/template/images/user/themeSetsBlockImage.jpg" alt="Романтический ужин">
-                            <p>1150 р.</p>
-                        </a>
-                        <p class="themeSetsBlockDesc">
-                            Принцип работы набора очень прост. В корпус вставляется поддон нужной 
-                        </p>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>

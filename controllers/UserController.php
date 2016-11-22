@@ -4,7 +4,9 @@
  * Контроллер UserController
  */
 class UserController
-{
+{   
+
+    // private $number;
     /**
      * Action для страницы "Регистрация"
      */
@@ -47,12 +49,7 @@ class UserController
      */
     public function actionLogin()
     {
-        // Переменные для формы
-        $email = false;
-        $password = false;
-        
-        // Обработка формы
-        if (isset($_POST['gologin'])) {
+
             // Если форма отправлена 
             // Получаем данные из формы
             $email = $_POST['email'];
@@ -63,19 +60,87 @@ class UserController
             // Проверяем существует ли пользователь
             $userId = User::checkUserData($email, $password);
 
-            
-            // Если данные правильные, запоминаем пользователя (сессия)
-            User::auth($userId);
+            if(isset($userId)) {
+              // Если данные правильные, запоминаем пользователя (сессия)
+                User::auth($userId);  
+                $info = "Вы успешно вошли !";
+            } else {
+                $info = 'Не правильно указан e-mail и(или) пароль !';
+            }
 
-            // Перенаправляем пользователя в закрытую часть - кабинет 
-            // header("Location: /cabinet");
-            
+        echo $info;
+
+    }
+
+    public function actionLoginbyphone() 
+    {
+    
+        $phone = $_POST['phone'];
+
+        $userId = User::checkUserDataByPhone($phone); 
+
+        if(isset($userId)) {
+            $number = rand(100000, 999999);
+
+            $info = SMS::send("api.smsfeedback.ru", 80, "kaishi", "Totv12ka", 
+            $phone, $number, "TEST-SMS"); 
+
+        } else {
+            $info = "Нет пользователя с таким номером телефона";
         }
 
-        // Подключаем вид
-        require_once(ROOT . '/views/user/login.php');
-        return true;
+        echo $info;   
     }
+    
+
+    public function actionSmsverify() 
+    {
+            $phone = $_POST['phone'];
+            $smsNumber = $_POST['smsNumber'];
+
+            if($number = $smsNumber) {
+                $userId = User::checkUserDataByPhone($phone); 
+                User::auth($userId);  
+                $info = "Вы успешно вошли !".$number."<br>".$smsNumber;   
+            } else {
+                $info = "Неверно указан проверочный код";
+            }
+
+            echo $info;
+    }
+
+    /**
+     * Action для страницы "Вход на сайт с телефоном"
+     */
+    // public function actionLoginbyphone()
+    // {
+    //     // Переменные для формы
+    //     $phone = false;
+
+    //     // Обработка формы
+    //     if (isset($_POST['gologin'])) {
+    //         // Если форма отправлена 
+    //         // Получаем данные из формы
+    //         $phone = $_POST['phone'];
+
+    //         // Флаг ошибок
+    //         $errors = false;
+    //         // Проверяем существует ли пользователь
+    //         $userId = User::checkUserDataByPhone($email, $password);
+
+            
+    //         // Если данные правильные, запоминаем пользователя (сессия)
+    //         User::auth($userId);
+
+    //         // Перенаправляем пользователя в закрытую часть - кабинет 
+    //         // header("Location: /cabinet");
+            
+    //     }
+
+    //     // Подключаем вид
+    //     require_once(ROOT . '/views/user/login.php');
+    //     return true;
+    // }
 
     /**
      * Удаляем данные о пользователе из сессии

@@ -2,14 +2,15 @@
 
 
 /**
- * Контроллер ThematicController
- * Тематический ужин
+ * Контроллер ActionsController
+ * Акции магазина
  */
-class ThematicController
+
+class ActionsController
 {
 
-    /**
-     * Action для страницы "Каталог товаров"
+	/**
+     * Action для страницы "Акции"
      */
     public function actionIndex()
     {
@@ -41,11 +42,11 @@ class ThematicController
         $user = User::getUserById($userId);
         
         // Подключаем вид
-        require_once(ROOT . '/views/thematic/index.php');
+        require_once(ROOT . '/views/actions/index.php');
         return true;
     }
 
-    public function actionIndexItem($id)
+    public function actionIndexInfo($id = 0)
     {
         // Список категорий для левого меню
         $categories = Category::getCategoriesList();
@@ -77,8 +78,9 @@ class ThematicController
         $user = User::getUserById($userId);
 
         // Подключаем вид
-        require_once(ROOT . '/views/thematic/view.php');
+        require_once(ROOT . '/views/actions/info.php');
         return $thematic;
 
     }
-}    
+
+}

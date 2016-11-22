@@ -30,7 +30,7 @@
                     </div>
                     <div class="footerMenuBlockContent">
                         <ul>
-                            <li><a href="/shares">Акции</a></li>
+                            <li><a href="/actions">Акции</a></li>
                             <li><a href="/reviews">Отзывы</a></li>
                             <li><a href="/contacts">Контакты</a></li>
                             <li><a href="/vacancies">Вакансии</a></li>
@@ -60,6 +60,26 @@
             </div>
         </div>
     </footer>
+    <div class="mobileFooter">
+        <div class="mobileFooterMenu">
+            <a href="/cart" class="mobileFooterMenuBlock">
+                <img src="/template/images/mobile/icons/m__cart.png" alt="Корзина">
+                <div class="mobileFooterMenuBlockDesc"><?php echo $totalPrice;?> руб.</div>
+            </a>
+            <a href="/actions" class="mobileFooterMenuBlock">
+                <img src="/template/images/mobile/icons/m__present.png" alt="Акции">
+                <div class="mobileFooterMenuBlockDesc">Акции</div>
+            </a>
+            <a href="/delivery" class="mobileFooterMenuBlock">
+                <img src="/template/images/mobile/icons/m__car.png" alt="Доставка">
+                <div class="mobileFooterMenuBlockDesc">Доставка</div>
+            </a>
+            <a href="/reviews" class="mobileFooterMenuBlock">
+                <img src="/template/images/mobile/icons/m__star.png" alt="Отзывы">
+                <div class="mobileFooterMenuBlockDesc">Отзывы</div>
+            </a>
+        </div>
+    </div>
     <div class="loginWrapper">
         <div class="loginArea">
             <div class="closeModalLogin">
@@ -81,6 +101,7 @@
                     <span>Нет аккаунта ? </span><span class="registrationLink">Зарегистрируйтесь !</span>
                 </div>
             </form>
+<!--
             <div class="loginSocial">
                 <span>Войти через Ваш аккаунт</span>
                 <span>в социальной сети</span>
@@ -88,6 +109,7 @@
                 <div class="loginSocialOdn">Одноклассники</div>
                 <div class="loginSocialFb">Facebook</div>
             </div>
+-->
         </div>
     </div>
     <div class="registrationWrapper">
@@ -112,6 +134,7 @@
                 <div class="registrationFormSubmit">
                 <span class="registrationFormSubmitButton">Регистрация</span></div>
             </form>
+<!--
             <div class="loginSocial">
                 <span>Войти через Ваш аккаунт</span>
                 <span>в социальной сети</span>
@@ -119,9 +142,9 @@
                 <div class="loginSocialOdn">Одноклассники</div>
                 <div class="loginSocialFb">Facebook</div>
             </div>
+-->
         </div>
     </div>
-    <script src="/template/js/jquery.js"></script>
     <script src="/template/js/jquery.cycle2.min.js"></script>
     <script src="/template/js/jquery.cycle2.carousel.min.js"></script>
     <script src="/template/js/bootstrap.min.js"></script>
@@ -131,6 +154,7 @@
     <script src="/template/js/jquery-spoiler-1.3.0/jquery.spoiler.js"></script>
     <script src="/template/js/main.js"></script>
     <script src="/template/js/app.js"></script>
+    <script src="/template/js/user.js"></script>
     <script>
         $(document).ready(function(){
             $(".add-to-cart").click(function () {

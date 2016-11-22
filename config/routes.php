@@ -10,6 +10,10 @@ return array(
     'category/([0-9]+)' => 'catalog/category/$1', // actionCategory в CatalogController
     //Тематический ужин
     'thematic' => 'thematic/index', // actionIndex в ThematicContoller
+    'thematicItem/([0-9]+)' => 'thematic/item/$1', // actionView в ThematicContoller
+    //Акции
+    'actions' => 'actions/index', // actionIndex в ActionContoller
+    'actionsInfo' => 'actions/Info/', // actionInfo в ActionContoller
     // Корзина:
     'cart/checkout' => 'cart/checkout', // actionAdd в CartController    
     'cart/Addproducts' => 'cart/Addproducts', // Addproducts в CartController   
@@ -22,6 +26,8 @@ return array(
     // Пользователь:
     'user/register' => 'user/register',
     'user/login' => 'user/login',
+    'user/loginbyphone' => 'user/loginbyphone',
+    'user/smsverify' => 'user/smsverify',
     'user/logout' => 'user/logout',
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',

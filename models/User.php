@@ -90,13 +90,41 @@ class User
         // Обращаемся к записи
         $user = $result->fetch();
 
-        if ($user) {
+        if (isset($user)) {
             // Если запись существует, возвращаем id пользователя
             return $user['id'];
-            echo $user['id'];
         } else {
-            echo "HUEV TEBE";
-            return true;
+            return false;
+        }
+        
+    }
+
+    public static function checkUserDataByPhone($phone)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM user WHERE phone = :phone';
+        $user = array();
+        // Получение результатов. Используется подготовленный запрос
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':phone', $phone, PDO::PARAM_INT);
+        
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        
+
+        // Обращаемся к записи
+        $user = $result->fetch();
+
+        if (isset($user)) {
+            // Если запись существует, возвращаем id пользователя
+            return $user['id'];
+        } else {
+            return false;
         }
         
     }
@@ -288,17 +316,46 @@ class User
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'INSERT INTO feedback (name, image, `date`, `text`, mark)'
-                . 'VALUES (:name, :image, :date, :text, :mark)';
+        $sql = 'INSERT INTO rewiews (user_id, date_time, `text`, mark)'
+                . 'VALUES (:user_id, :date_time, :text, :mark)';
 
         // Получение и возврат результатов. Используется подготовленный запрос
         $result = $db->prepare($sql);
-        $result->bindParam(':name', $name, PDO::PARAM_STR);
-        $result->bindParam(':image', $image, PDO::PARAM_STR);
-        $result->bindParam(':date', $date, PDO::PARAM_STR);
+        $result->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+        $result->bindParam(':date_time', $date_time, PDO::PARAM_STR);
         $result->bindParam(':text', $text, PDO::PARAM_STR);
         $result->bindParam(':mark', $mark, PDO::PARAM_STR);
         return $result->execute();
+    }
+
+    /*
+    Получение отзывов на странице отзывов
+    */
+
+    public static function getAllFeedBacks()
+    {
+         // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM reviews LEFT JOIN user ON reviews.user_id=user.id';
+        $all_feedbacks = array();
+         $result = $db->prepare($sql);
+        // Получение результатов. Используется подготовленный запрос
+
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+        $i = 0;
+        // Обращаемся к записи
+         while ($row = $result->fetch()) {
+            $all_feedbacks[$i]['name'] = $row['name'];
+            $all_feedbacks[$i]['text'] = $row['text'];
+            $all_feedbacks[$i]['mark'] = $row['mark'];
+            $all_feedbacks[$i]['date_time'] = $row['date_time'];
+            $i++;
+        }
+
+        return $all_feedbacks;
     }
 
 }

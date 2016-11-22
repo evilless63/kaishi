@@ -12,6 +12,28 @@ window.moffConfig = {
 };
 
 $(document).ready(function(){
+
+	// $('.rating').each(function(){
+	// 	if ($(this).text() == "1"){
+	// 		$(this).empty();
+	// 		$(this).append('<span class="colored">★</span><span>★</span><span>★</span><span>★</span><span>★</span>');	
+	// 	} else if ($(this).text() == "2"){
+	// 		$(this).empty();
+	// 		$(this).append('<span class="colored">★</span class="colored"><span>★</span><span>★</span><span>★</span><span>★</span>');
+	// 	} else if ($(this).text() == "3") {
+	// 		$(this).empty();
+	// 		$(this).append('<span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span>★</span><span>★</span>');	
+	// 	} else if ($(this).text() == "4") {
+	// 		$(this).empty();
+	// 		$(this).append('<span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span>★</span>');
+	// 	} else if ($(this).text() == "5") {
+	// 		$(this).empty();
+	// 		$(this).append('<span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span class="colored">★</span>');	
+	// 	}
+	// });
+
+
+
 	$( ".themeSetsBlockImageCover" ).hover(
 	  function() {
 	    $( this ).children("span").css( "display", "block" );
@@ -48,20 +70,32 @@ $(document).ready(function(){
 
 //Открываем профайл товара	
 
-	$( ".sushiopenProfail" ).click(
+	$( ".sushiopenProfail, .sushiBlockImage" ).click(
 		function(){
 			var productId = $(this).attr('data-id');
 			$.ajax({
 			    url: "/product/" + productId,
-			    type: "get",
-			    data: {},
+			    type: "post",
 			    success: function(response){
 			    	var data = JSON.parse(response);
+			    	if(data.product_type == 'roll') {
+			    		if (getDayName() == "Monday") {
+			    			data.price = data.price - (data.price/100*25);	
+			    		}
+			    		$('.tabs__contentBuyBlock').html(' <img src="/template/images/icons/mainMenu__rolls.svg" alt="">'+
+                        '<span>*</span>'+
+                        '<span>8</span>'+
+                        '<span>=</span>'+
+                        '<span class="productPrice">'+data.price+'<span class="min"> р</span></span>');
+			    	} else {
+			    		$('.tabs__contentBuyBlock').html('<span class="productPrice">'+data.price+'<span class="min"> р</span></span>');
+			    	}
 			        $('.sushiProfailArea').children('h3').html(data.name);
-			        $('.productPrice').html(data.price);
 			        $('.productDescription').html(data.description);
 			        $(".productModalImage").attr('src', '/upload/images/products/' + data.id + '.jpg');
-			        $('.sushiBlockGetBusketProfail').attr('data-id', data.id);
+			        $('.sushiBlockGetBusketProfail').each(function(){
+			           $(this).attr('data-id', data.id); 
+			        });
 			    },
 			    // dataType: "json"
 			});
@@ -69,12 +103,27 @@ $(document).ready(function(){
 			$( ".sushiProfailWrapper" ).css( "display", "block" );	
 		});
 
+function getDayName(){
+	var d = new Date();
+	var weekday = new Array(7);
+	weekday[0]=  "Sunday";
+	weekday[1] = "Monday";
+	weekday[2] = "Tuesday";
+	weekday[3] = "Wednesday";
+	weekday[4] = "Thursday";
+	weekday[5] = "Friday";
+	weekday[6] = "Saturday";
+
+	var day = weekday[d.getDay()];
+	return day;
+}
+
 //Открываем профайл товара	
 
-		// $( ".rowProductPaymentTocart" ).click(
-		// function(){
-		// 	$( ".sushiProfailWrapper" ).css( "display", "block" );	
-		// });
+		$( ".rowProductPaymentTocart" ).click(
+		function(){
+			$( ".sushiProfailWrapper" ).css( "display", "block" );	
+		});
 		
 	$( ".closeModal" ).click(
 		function(){
@@ -193,6 +242,25 @@ $('.zakazRowScheduleDesc').click(function(){
 	window.location.href = "/cart";
 });
 
+//Заказ тематического набора
+$('.ContentDescPromoBlockTocartThematic').click(function(){
+	var id = [];
+	var i = 0;
+
+	$('.ContentDescPromoBlock').each(function(){
+		id.push($(this).attr('data-id'));
+	});
+
+	for(i; i < id.length; i++) {
+		$.post("/cart/addAjax/"+id[i], {}, function (data) {
+	        $("#cart-count").html(data);
+	    });
+	}
+	
+	alert("Тематический набор успешно добавлен в корзину, вы будете перенаправлены в оформление заказа.");
+	window.location.href = "/cart";
+});
+
 //Оставить отзыв из личного кабинета
 
 $('.zakazRowSchedule').click(function(){
@@ -254,80 +322,6 @@ $(document).mouseup(function(e){ // событие клика по веб-док
 });
 
 
-
-//Регистрация нового пользователя
-
-$('.registrationFormSubmit').click(function(){
-
-	var login = $('.registrationFormLogin').val();
-	var name = $('.registrationFormName').val();
-	var surname = $('.registrationFormSurname').val();
-	var phone = $('.registrationFormPhone').val();
-	var email = $('.registrationFormEmail').val();
-	var password = $('.registrationFormPassword').val();
-	var polzSogl = $('#polzSogl').val();
-
-	if (login !=="" && name !== "" && surname !=="" && phone !== "" && email !== "" && password !=="" && polzSogl !== "") {
-
-		$.post(
-		  "user/register",
-		  {
-		  	goRegister: 1,
-		    login: login,
-		    name: name,
-		    surname: surname,
-		    phone: phone,
-		    email: email,
-		    password: password,
-		    polzSogl: polzSogl
-		  },
-		  onAjaxSuccess
-		);
-
-	} else {
-
-		alert("Заполните поля !")
-
-	}
-
-	 
-	function onAjaxSuccess(data)
-	{
-	  // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-	  alert("Вы успешно зарегистрировались и сейчас можете войти используя логин и пароль");
-	  // Возвращаем пользователя в личный кабинет
-       document.location.href='/';
-	}
-
-	
-
-});  
-
-
-//Вход пользователя
-
-
-$('.loginFormSpan').click(function(){
-
-	var email = $('.loginFormEmail').val();
-	var password = $('.loginFormPass').val();
-
-	$.post(
-	  "user/login",
-	  {
-	  	gologin: 1,
-	    email: email,
-	    password: password
-	  },
-	  function(data){
-	  	alert("Вы успешно вошли");
-	  	document.location.href='/';
-	  }
-	);
-
-});
-
-
 $('#contenInput').click(function(){
 
 	var cartPaymentBlockCartnumber1 = $('#cartPaymentBlockCartnumber1').val();
@@ -354,6 +348,21 @@ $('#contenInput').click(function(){
 	);
 
 });
+    
+// Обработка ввода адреса в кабинете пользователя
+
+$('.adressAdd').click(function(){
+	
+});
+
+//Дополнительные товары в виде карусели на страниы корзины 
+$('.aditionallyBlocks').slick({
+  arrows: true,
+  // infinite: true,
+  slidesToShow: 5,
+  slidesToScroll: 1
+}); 
+
 
 //Обработка ввода номера скидочной карточки
 
@@ -402,9 +411,6 @@ $('#contenInput').click(function(){
 // });
 
 
-
-
-
 });
 
 (function($) {
@@ -428,13 +434,20 @@ $(document).ready(function(){
 		function(){
 			$(".chooseProucts").css("display", "none");
 			$(".topAlert").css("display", "none");
-			
-			$( ".choosePayment" ).css( "display", "block" );
+			$(".choosePayment").css( "display", "block" );
 		});
-	
-	$( ".formActionCartZakaz").click(
+
+	$( ".formActionCartPrev").click(
 		function(){
-			alert("Товар успешно заказан !");
+			$(".chooseProucts").css("display", "block");
+			$(".topAlert").css("display", "flex");
+			$(".choosePayment").css( "display", "none" );
+		});
+
+	$('.headerMenuIcon').click(
+		function(){
+			$('.sidebarPopUp').toggle();	
+			$('.sidebarPopUpWrapper').toggle();
 		});	
 });	
 

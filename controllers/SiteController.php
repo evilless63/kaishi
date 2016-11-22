@@ -18,7 +18,7 @@ class SiteController
         $thematicCategories = Thematic::getThematicList();
 
         // Список последних товаров
-        $latestProducts = Product::getLatestProducts(6);
+        // $latestProducts = Product::getLatestProducts(6);
 
         // Список товаров для слайдера
         $sliderProducts = Product::getRecommendedProducts();
@@ -155,6 +155,25 @@ class SiteController
 
          // Получим идентификаторы и количество товаров в корзине
         $productsInCart = Cart::getProducts();
+
+        $userReviews = User::getAllFeedBacks();
+        $userReviewsWithMarks = array();
+
+        foreach ($userReviews as $userReview) {
+            if($userReview['mark'] == "5"){
+                $userReview['mark'] = "<div class=\"rating\"><span class=\"m\">☆</span><span class=\"m\">☆</span><span class=\"m\">☆</span><span class=\"m\">☆</span><span class=\"m\">☆</span></div>"; 
+            } elseif ($userReview['mark'] == "4"){
+                $userReview['mark'] = "<div class=\"rating\"><span class=\"m\">☆</span><span class=\"m\">☆</span><span class=\"m\">☆</span><span class=\"m\">☆</span><span>☆</span></div>"; 
+            } elseif ($userReview['mark'] == "3"){
+                $userReview['mark'] = "<div class=\"rating\"><span class=\"m\">☆</span><span class=\"m\">☆</span><span class=\"m\">☆</span><span>☆</span><span>☆</span></div>"; 
+            } elseif ($userReview['mark'] == "2"){
+                $userReview['mark'] = "<div class=\"rating\"><span class=\"m\">☆</span><span class=\"m\">☆</span><span>☆</span><span>☆</span><span>☆</span></div>"; 
+            } else {
+                $userReview['mark'] = "<div class=\"rating\"><span class=\"m\">☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span></div>";
+            }
+
+            array_push($userReviewsWithMarks, $userReview);
+        }
 
         if ($productsInCart) {
             // Если в корзине есть товары, получаем полную информацию о товарах для списка

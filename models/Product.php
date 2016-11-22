@@ -21,7 +21,7 @@ class Product
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, name, price, is_new FROM product '
+        $sql = 'SELECT id, name, price, is_new, description, product_type FROM product '
                 . 'WHERE status = "1" ORDER BY id DESC '
                 . 'LIMIT :count';
 
@@ -43,6 +43,8 @@ class Product
             $productsList[$i]['name'] = $row['name'];
             $productsList[$i]['price'] = $row['price'];
             $productsList[$i]['is_new'] = $row['is_new'];
+            $products[$i]['product_type'] = $row['product_type'];
+            $productsList[$i]['description'] = $row['description'];
             $i++;
         }
         return $productsList;
@@ -64,7 +66,7 @@ class Product
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, name, price, is_new, description FROM product '
+        $sql = 'SELECT id, name, price, is_new, description, product_type FROM product '
                 . 'WHERE status = 1 AND category_id = :category_id '
                 . 'ORDER BY id ASC LIMIT :limit OFFSET :offset';
 
@@ -85,6 +87,7 @@ class Product
             $products[$i]['name'] = $row['name'];
             $products[$i]['price'] = $row['price'];
             $products[$i]['description'] = $row['description'];
+            $products[$i]['product_type'] = $row['product_type'];
             $products[$i]['is_new'] = $row['is_new'];
             $i++;
         }
@@ -172,6 +175,9 @@ class Product
             $products[$i]['code'] = $row['code'];
             $products[$i]['name'] = $row['name'];
             $products[$i]['price'] = $row['price'];
+            $products[$i]['price_action'] = $row['price_action'];
+            $products[$i]['product_type'] = $row['product_type'];
+            $products[$i]['description'] = $row['description'];
             $i++;
         }
         return $products;
@@ -196,6 +202,7 @@ class Product
             $productsList[$i]['id'] = $row['id'];
             $productsList[$i]['name'] = $row['name'];
             $productsList[$i]['price'] = $row['price'];
+            $products[$i]['product_type'] = $row['product_type'];
             $productsList[$i]['is_new'] = $row['is_new'];
             $i++;
         }
@@ -219,6 +226,7 @@ class Product
             $productsList[$i]['id'] = $row['id'];
             $productsList[$i]['name'] = $row['name'];
             $productsList[$i]['code'] = $row['code'];
+            $products[$i]['product_type'] = $row['product_type'];
             $productsList[$i]['price'] = $row['price'];
             $i++;
         }
@@ -366,6 +374,72 @@ class Product
 
         // Возвращаем путь изображения-пустышки
         return $path . $noImage;
+    }
+
+    public static function getThematicImage($id)
+    {
+        // Название изображения-пустышки
+        $noImage = 'no-image.jpg';
+
+        // Путь к папке с товарами
+        $path = '/upload/images/products/';
+
+        // Путь к изображению товара
+        $pathToProductImage = $path . $id . 'thematic.jpg';
+
+        if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImage)) {
+            // Если изображение для товара существует
+            // Возвращаем путь изображения товара
+            return $pathToProductImage;
+        }
+
+        // Возвращаем путь изображения-пустышки
+        return $path . $noImage;
+    }
+    
+    //Получаем количество товаров в базе
+    public static function getProductCount(){
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT COUNT(*) as count FROM product';
+
+        // Выполнение коменды
+        $result = $db->query($sql);
+        $count = $result->fetchObject()->count;
+
+        return $count;    
+    }
+
+    //Получаем рандомный продукт 
+    public static function getRandomProduct($productCountOne){
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM product WHERE id = :count ';
+
+        // Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':count', $productCountOne, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        
+        // Выполнение коменды
+        $result->execute();
+
+        // Получение и возврат результатов
+        $i = 0;
+        $productsList = array();
+        while ($row = $result->fetch()) {
+            $productsList['id'] = $row['id'];
+            $productsList['name'] = $row['name'];
+            $products[$i]['product_type'] = $row['product_type'];
+            $productsList['price'] = $row['price'];
+        }
+        return $productsList;    
     }
 
 }
