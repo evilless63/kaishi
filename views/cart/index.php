@@ -3,7 +3,6 @@
         <div class="mainWrap mainWrapCart mainWrapAkcii container row toSpaceBetween">
             <div class="content">
                 <h1 class="headerContent">Оформление заказа</h1>
-                <?php print_r($cProducts) ?>
                 <div class="row">
                     <div class="cartProductsBlock">
                         <?php if ($productsInCart): ?>
@@ -63,7 +62,7 @@
                             <input type="text" id="cartPaymentBlockCartnumber4" maxlength="1" class="cartPaymentBlockCartnumberInput" value="">
                             <input type="text" id="cartPaymentBlockCartnumber5" maxlength="1" class="cartPaymentBlockCartnumberInput" value="">
                             <input type="text" id="cartPaymentBlockCartnumber6" maxlength="1" class="cartPaymentBlockCartnumberInput" value="">
-                   <!--          <div id="contenInput">GO</div> -->
+                            <div id="contenInput">GO</div>
                         </div>
                         <div class="cartPaymentBlockItogo">
                         <?php if ($productsInCart): ?>

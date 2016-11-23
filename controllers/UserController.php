@@ -69,27 +69,30 @@ class UserController
             }
 
         echo $info;
+        return true;
 
     }
 
     public function actionLoginbyphone() 
     {
     
-        $phone = $_POST['phone'];
+          $phone = $_POST['phone'];
 
-        $userId = User::checkUserDataByPhone($phone); 
+          // Флаг ошибок
+            $errors = false;
 
-        if(isset($userId)) {
+            $userIdphone = User::checkUserDataByPhone($phone); 
             $number = rand(100000, 999999);
 
-            $info = SMS::send("api.smsfeedback.ru", 80, "kaishi", "Totv12ka", 
-            $phone, $number, "TEST-SMS"); 
-
-        } else {
-            $info = "Нет пользователя с таким номером телефона";
-        }
-
-        echo $info;   
+            if(isset($userIdphone)) {
+                $info = SMS::send("api.smsfeedback.ru", 80, "kaishi", "Totv12ka", 
+                $phone, $number, "TEST-SMS"); 
+            } else {
+                $info = "Нет пользователя с таким номером телефона";
+                
+            }  
+        echo $info;
+        return true;
     }
     
 
@@ -106,41 +109,11 @@ class UserController
                 $info = "Неверно указан проверочный код";
             }
 
-            echo $info;
+            echo $info;    
+            return true;
     }
 
-    /**
-     * Action для страницы "Вход на сайт с телефоном"
-     */
-    // public function actionLoginbyphone()
-    // {
-    //     // Переменные для формы
-    //     $phone = false;
 
-    //     // Обработка формы
-    //     if (isset($_POST['gologin'])) {
-    //         // Если форма отправлена 
-    //         // Получаем данные из формы
-    //         $phone = $_POST['phone'];
-
-    //         // Флаг ошибок
-    //         $errors = false;
-    //         // Проверяем существует ли пользователь
-    //         $userId = User::checkUserDataByPhone($email, $password);
-
-            
-    //         // Если данные правильные, запоминаем пользователя (сессия)
-    //         User::auth($userId);
-
-    //         // Перенаправляем пользователя в закрытую часть - кабинет 
-    //         // header("Location: /cabinet");
-            
-    //     }
-
-    //     // Подключаем вид
-    //     require_once(ROOT . '/views/user/login.php');
-    //     return true;
-    // }
 
     /**
      * Удаляем данные о пользователе из сессии
@@ -155,6 +128,7 @@ class UserController
         
         // Перенаправляем пользователя на главную страницу
         header("Location: /");
+        return true;
     }
 
 }

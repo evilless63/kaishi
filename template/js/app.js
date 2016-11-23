@@ -322,32 +322,6 @@ $(document).mouseup(function(e){ // событие клика по веб-док
 });
 
 
-$('#contenInput').click(function(){
-
-	var cartPaymentBlockCartnumber1 = $('#cartPaymentBlockCartnumber1').val();
-	var cartPaymentBlockCartnumber2 = $('#cartPaymentBlockCartnumber2').val();
-	var cartPaymentBlockCartnumber3 = $('#cartPaymentBlockCartnumber3').val();
-	var cartPaymentBlockCartnumber4 = $('#cartPaymentBlockCartnumber4').val();
-	var cartPaymentBlockCartnumber5 = $('#cartPaymentBlockCartnumber5').val();
-	var cartPaymentBlockCartnumber6 = $('#cartPaymentBlockCartnumber6').val();
-
-	$.post(
-	  "/cart/Getcashcard",
-	  {
-	  	getCashCard: 1,
-	    cartPaymentBlockCartnumber1: cartPaymentBlockCartnumber1,
-	    cartPaymentBlockCartnumber2: cartPaymentBlockCartnumber2,
-	    cartPaymentBlockCartnumber3: cartPaymentBlockCartnumber3,
-	    cartPaymentBlockCartnumber4: cartPaymentBlockCartnumber4,
-	    cartPaymentBlockCartnumber5: cartPaymentBlockCartnumber5,
-	    cartPaymentBlockCartnumber6: cartPaymentBlockCartnumber6
-	  },
-	  function (data){
-	  	alert(data);
-	  }
-	);
-
-});
     
 // Обработка ввода адреса в кабинете пользователя
 
@@ -366,49 +340,37 @@ $('.aditionallyBlocks').slick({
 
 //Обработка ввода номера скидочной карточки
 
-// $( "#cartPaymentBlockCartnumber1" ).change(function(){
-//   var cartPaymentBlockCartnumber1 = $('#cartPaymentBlockCartnumber1').val();
-// });
+$('#contenInput').click(function(){
 
-// $( "#cartPaymentBlockCartnumber2" ).change(function(){
-//   var cartPaymentBlockCartnumber2 = $('#cartPaymentBlockCartnumber2').val();
-// });
+	
+var CardNum1 = $('#cartPaymentBlockCartnumber1').val();
+var CardNum2 = $('#cartPaymentBlockCartnumber2').val();
+var CardNum3 = $('#cartPaymentBlockCartnumber3').val();
+var CardNum4 = $('#cartPaymentBlockCartnumber4').val();
+var CardNum5 = $('#cartPaymentBlockCartnumber5').val();
+var CardNum6 = $('#cartPaymentBlockCartnumber6').val();
 
-// $( "#cartPaymentBlockCartnumber3" ).change(function(){
-//   var cartPaymentBlockCartnumber3 = $('#cartPaymentBlockCartnumber3').val();
-// });
-
-// $( "#cartPaymentBlockCartnumber4" ).change(function(){
-//   var cartPaymentBlockCartnumber4 = $('#cartPaymentBlockCartnumber4').val();
-// });
-
-// $( "#cartPaymentBlockCartnumber5" ).change(function(){
-//   var cartPaymentBlockCartnumber5 = $('#cartPaymentBlockCartnumber5').val();
-// });
-
-// $( "#cartPaymentBlockCartnumber6" ).change(function(){
-//   var cartPaymentBlockCartnumber6 = $('#cartPaymentBlockCartnumber6').val();
+var card = CardNum1+CardNum2+CardNum3+CardNum4+CardNum5+CardNum6;
 
 
-
-// 		$.post(
-// 		  "/cart/Getcashcard",
-// 		  {
-// 		  	getCashCard: 1,
-// 		    cartPaymentBlockCartnumber1: cartPaymentBlockCartnumber1,
-// 		    cartPaymentBlockCartnumber2: cartPaymentBlockCartnumber2,
-// 		    cartPaymentBlockCartnumber3: cartPaymentBlockCartnumber3,
-// 		    cartPaymentBlockCartnumber4: cartPaymentBlockCartnumber4,
-// 		    cartPaymentBlockCartnumber5: cartPaymentBlockCartnumber5,
-// 		    cartPaymentBlockCartnumber6: cartPaymentBlockCartnumber6
-// 		  },
-// 		  function (data){
-// 		  	alert("ALL OK");
-// 		  }
-// 		);
+		$.post(
+		  "/cart/cardcheck",
+		  {
+		    card: card,
+		  },
+		  function (data){
+		  	if(data = false) {
+		  		alert('Карта указана неверно, уточните у администратора сайта');
+		  	} else {
+		  		$('.cartPaymentBlockItogo').prepend('<span>Скидка с учетом карточки:</span>');
+		  		$('.orderSumm').empty();
+		  		$('.orderSumm').append(data);
+		  	}
+		  }
+		);
 
 		
-// });
+});
 
 
 });

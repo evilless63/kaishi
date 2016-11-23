@@ -6,7 +6,7 @@ $('.loginFormSpan').click(function(){
 	var email = $('.loginFormEmail').val();
 	var password = $('.loginFormPass').val();
 	var phone = $('.loginFormPhone').val();
-	if(phone == "") {
+	if(phone.length == 0) {
 		$.post(
 		  "/user/login",
 		  {
@@ -18,38 +18,45 @@ $('.loginFormSpan').click(function(){
 		  	// document.location.href='/';
 		  }
 		);
-	} else {
-		$.post(
-		  "user/loginbyphone",
-		  {
-		    phone: phone
-		  },
-		  function(data){
+	} else if(email.length == 0 && password.length == 0) {
+
+		var data = {phone: phone};
+
+		$.ajax({
+		  url: "user/loginbyphone",
+		  type: "post",
+		  data: data,
+		  success: function(data){
 		  	alert(data);
-		  	$('#loginForm').append('<input type="text" class="loginFormSMS" id="loginFormSMS" placeholder="Введите код подтверждения">')
-		  	$('#loginForm').append('<div class="loginFormButton"><span class="loginFormSMSbutton">Вход</span></div>')
-		  	$('#loginForm').append('<div class="loginFormButton"><span class="loginSmsInfo">Не уходите и не перезагружайте страницу, в противном случае, вход придется повторить снова</span></div>')
-		  	$('.loginFormSMSbutton').click(function(){
-		  		var smsNumber = $('.loginFormSMS').val();
-		  		var phone = $('.loginFormPhone').val();
-		  		if(smsNumber != "") {
-		  			$.post(
-		  			"/user/smsverify",
-					  {
-					    phone: phone,
-					    smsNumber: smsNumber
-					  },
-					  function(data){
-					  	alert(data);
-					  	// document.location.href='/';
-					  }
-		  			);	
-		  		} else {
-		  			alert("Укажите код, полученый по СМС");
-		  		}
-		  	});
+		  	if( data != "Нет пользователя с таким номером телефона") {
+		  		$('#loginForm').append('<input type="text" class="loginFormSMS" id="loginFormSMS" placeholder="Введите код подтверждения">')
+			  	$('#loginForm').append('<div class="loginFormButton"><span class="loginFormSMSbutton">Вход</span></div>')
+			  	$('#loginForm').append('<div class="loginFormButton"><span class="loginSmsInfo">Не уходите и не перезагружайте страницу, в противном случае, вход придется повторить снова</span></div>')
+			  	$('.loginFormSMSbutton').click(function(){
+			  		var smsNumber = $('.loginFormSMS').val();
+			  		var phone = $('.loginFormPhone').val();
+			  		if(smsNumber != "") {
+			  			$.post(
+			  			"/user/smsverify",
+						  {
+						    phone: phone,
+						    smsNumber: smsNumber
+						  },
+						  function(data){
+						  	alert(data);
+						  	// document.location.href='/';
+						  }
+			  			);	
+			  		} else {
+			  			alert("Укажите код, полученый по СМС");
+			  		}
+			  	});	
+		  	}
+		  	
 		  }
-		);
+		});
+	} else {
+		alert("Укажите Номер телефона или связку Email + Пароль");
 	}
 	
 

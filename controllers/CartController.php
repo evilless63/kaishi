@@ -7,6 +7,8 @@
 class CartController
 {
 
+    public $totalPrice;
+
     /**
      * Action для добавления товара в корзину синхронным запросом<br/>
      * (для примера, не используется)
@@ -90,7 +92,7 @@ class CartController
         // } 
 
         $randomProductsList = Product::getLatestProducts(12);
-        
+        $totalNoactionPrice;
         // Получим идентификаторы и количество товаров в корзине
         $productsInCart = Cart::getProducts();
         
@@ -144,26 +146,6 @@ class CartController
         require_once(ROOT . '/views/cart/index.php');
         return true;
        
-    }
-
-    public function actionGetcashcard(){
-
-        if(isset($_POST['getCashCard'], $totalPrice)) {
-
-            $value = $_POST['cartPaymentBlockCartnumber1'].$_POST['cartPaymentBlockCartnumber2'].$_POST['cartPaymentBlockCartnumber3'].$_POST['cartPaymentBlockCartnumber4'].$_POST['cartPaymentBlockCartnumber5'].$_POST['cartPaymentBlockCartnumber6'];
-
-            $thisCard = Order::getCashCard($value); 
-            if($thisCard) {
-                $totalPriceSale = $totalPrice/$thisCard['sale_count'];
-                $totalPrice = $totalPrice - $totalPriceSale;
-
-                echo $totalPrice;
-            } else {
-                echo "Ваша карта не активна либо вы неверно ввели ее номер, повторите, пожалуйста, заново !";
-            }
-            
-        }
-
     }
 
 
@@ -266,6 +248,24 @@ class CartController
         // return true;
 
          
+    }
+
+    public function actionCardcheck()
+    {
+        $card = $_POST['card'];
+        $user = $_SESSION['user'];
+
+        $cardData = User::getSaleCard($user, $card);
+
+        if (isset($cardData)) {
+          $NewtotalPrice = $totalPrice-$totalPrice/100*$cardData['sale_count'];
+          echo $NewtotalPrice;  
+      } else {
+          $NewtotalPrice = false;  
+          echo $NewtotalPrice; 
+      }
+    
+    
     }
 
 }

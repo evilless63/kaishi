@@ -494,27 +494,6 @@ class Order
         return true;
     }
 
-    public static function getCashCard($value){
-
-        // Соединение с БД
-        $db = Db::getConnection();
-
-        // Текст запроса к БД
-        $sql = 'SELECT * FROM card WHERE `number` = :value';
-
-        $result = $db->prepare($sql);
-        $result->bindParam(':value', $value, PDO::PARAM_INT);
-
-        // Указываем, что хотим получить данные в виде массива
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-
-        // Выполняем запрос
-        $result->execute();
-
-        // Возвращаем данные
-        return $result->fetch();
-
-    }
 
     public static function selectMaxOrderNumber(){
 

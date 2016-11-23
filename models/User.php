@@ -115,7 +115,6 @@ class User
         $result->setFetchMode(PDO::FETCH_ASSOC);
         $result->execute();
 
-        
 
         // Обращаемся к записи
         $user = $result->fetch();
@@ -357,5 +356,25 @@ class User
 
         return $all_feedbacks;
     }
+
+    public static function getSaleCard($user, $card)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM card WHERE user_id = :user AND `number` = :card';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':user', $user, PDO::PARAM_INT);
+        $result->bindParam(':card', $card, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        return $result->fetch();
+    } 
 
 }
