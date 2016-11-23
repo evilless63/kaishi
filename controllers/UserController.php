@@ -39,7 +39,6 @@ class UserController
 
 
         }
-
      
         return true;
     }

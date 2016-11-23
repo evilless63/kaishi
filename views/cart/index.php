@@ -3,6 +3,7 @@
         <div class="mainWrap mainWrapCart mainWrapAkcii container row toSpaceBetween">
             <div class="content">
                 <h1 class="headerContent">Оформление заказа</h1>
+                <?php print_r($_SESSION['user'])?>
                 <div class="row">
                     <div class="cartProductsBlock">
                         <?php if ($productsInCart): ?>
@@ -72,7 +73,7 @@
                         <?php endif; ?>    
                         </div>
                         <div class="cartPaymentBlockMisc">
-                            <?php if($product_action){ echo "<span>Ваша скидка ".$product_discount. " рублей.</span>";}?>
+                            <?php if($product_action == true){ echo "<span>Ваша скидка ".$product_discount. " рублей.</span>";}?>
                             <span class="question">Нужны дополнительные наборы?</span>
                             <div class="cartPaymentBlockMiscRow">
                                 <img class="cartPaymentBlockMiscImg" src="<?php echo Product::getImage($simpleProduct['id'])?>" alt="<?php echo $simpleProduct['name'] ?>" title="<?php echo $simpleProduct['name'] ?>" />

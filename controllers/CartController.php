@@ -8,6 +8,8 @@ class CartController
 {
 
     public $totalPrice;
+    public $product_action;
+    public $totalNoactionPrice;
 
     /**
      * Action для добавления товара в корзину синхронным запросом<br/>
@@ -22,6 +24,7 @@ class CartController
         // Возвращаем пользователя на страницу с которой он пришел
         $referrer = $_SERVER['HTTP_REFERER'];
         header("Location: $referrer");
+        return true;
     }
 
     /**
@@ -46,6 +49,7 @@ class CartController
 
         // Возвращаем пользователя в корзину
         header("Location: /cart");
+        return true;
     }
 
     public function actionPlus($id)
@@ -55,6 +59,7 @@ class CartController
 
         // Возвращаем пользователя в корзину
         header("Location: /cart");
+        return true;
     }
 
     public function actionMinus($id)
@@ -64,6 +69,7 @@ class CartController
 
         // Возвращаем пользователя в корзину
         header("Location: /cart");
+        return true;
     }
 
 
@@ -72,6 +78,7 @@ class CartController
      */
     public function actionIndex()
     {
+
         // Список категорий для левого меню
         $categories = Category::getCategoriesList();
         
@@ -127,6 +134,7 @@ class CartController
 
           } else {
             $product_action = false;
+            $totalNoactionPrice = $totalPrice;
             $products = Product::getProdustsByIds($productsIds);
           }
             
@@ -193,7 +201,7 @@ class CartController
                     } 
                 }  
             }
-
+        return true;    
     }
 
     /**
@@ -241,30 +249,30 @@ class CartController
         }
 
         
-        
-
-        // // Подключаем вид
-        // require_once(ROOT . '/views/cart/checkout.php');
-        // return true;
-
+    
+        return true;
          
     }
 
     public function actionCardcheck()
     {
-        $card = $_POST['card'];
-        $user = $_SESSION['user'];
+        if(isset($_SESSION['user'])) {
+            $card = $_POST['card'];
+            $user = $_SESSION['user'];
 
-        $cardData = User::getSaleCard($user, $card);
+            $cardData = User::getSaleCard($user, $card);
 
-        if (isset($cardData)) {
-          $NewtotalPrice = $totalPrice-$totalPrice/100*$cardData['sale_count'];
-          echo $NewtotalPrice;  
-      } else {
-          $NewtotalPrice = false;  
-          echo $NewtotalPrice; 
-      }
-    
+            if (isset($cardData)) {
+                $info = $totalPrice-$totalPrice/100*$cardData['sale_count']; 
+            } else {
+                $info = $totalPrice;  
+            }  
+        } else {
+            $info = "Сначала необходимо войти на сайт";
+        }
+        
+        echo $info;
+       
     
     }
 

@@ -15,7 +15,7 @@ $('.loginFormSpan').click(function(){
 		  },
 		  function(data){
 		  	alert(data);
-		  	// document.location.href='/';
+		  	document.location.href='/';
 		  }
 		);
 	} else if(email.length == 0 && password.length == 0) {
@@ -44,7 +44,7 @@ $('.loginFormSpan').click(function(){
 						  },
 						  function(data){
 						  	alert(data);
-						  	// document.location.href='/';
+						  	document.location.href='/';
 						  }
 			  			);	
 			  		} else {
