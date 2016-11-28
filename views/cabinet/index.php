@@ -88,27 +88,35 @@
                     </div>
                     
                     <div class="tabs__content zakaz">
-                        <div class="adressRow">
-                            <span>АДРЕС ДОСТАВКИ: 
-                            <?php 
-                                if (!isset($order)) { 
-                                    echo "Не указано ни одного адреса, желаете создать новый ?</span>";
-                                } else {
-                                    echo $order['user_adress'].  
-                                    '</span>'.
-                                    '<div class="adressRowEdit">'.
-                                        '<img src="/template/images/icons/lc__addresEdit.png" alt="">'.
-                                    '</div>'.
-                                    '<div class="adressRowDelete">'.
-                                        '<img src="/template/images/icons/misc__delete.svg" alt="">'.
-                                    '</div>';
-                                }   
-                            ?>
                             
-                        </div>
+                                <?php foreach ($adressList as $adress):?>
+                                    <div class="adressRow"><span>АДРЕС ДОСТАВКИ:
+                                    <?php if (!isset($adress)) { 
+                                        echo "Не указано ни одного адреса, желаете создать новый ?</span>";
+                                    } else { 
+                                        echo $adress['adress']?>  
+                                        </span>
+<!--                                        <div class="adressRowEdit">
+                                            <img src="/template/images/icons/lc__addresEdit.png" alt="">
+                                        </div>-->
+                                        <div class="adressRowDelete" id="<?php echo $adress['id']?>">
+                                            <img src="/template/images/icons/misc__delete.svg" alt="">
+                                        </div>
+                                        <div class="adressRowActive">
+                                            <?php if($adress['is_active'] == '1') {?>
+                                            <input type="radio" checked name="activeAdress" class="activeAdress" id="<?php echo $adress['id']?>"/>
+                                            <?php } else {?>
+                                            <input type="radio" name="activeAdress" class="activeAdress" id="<?php echo $adress['id']?>"/>
+                                            <?php }?>
+                                        </div>
+                                    </div>
+                                <?php } endforeach;  ?>
+                            
+                        
                         <div class="row">
                             <textarea rows="5" name="userComment" cols="60" class="addAdressField" placeholder="Укажите Ваш адрес..."></textarea>
                             <div class="adressAdd">Добавить адрес</div>
+                            <div class="adressActive">Назначить активным</div>
                         </div>
                     </div>
                     <div class="tabs__content zakaz">
@@ -157,7 +165,7 @@
     <div class="feedbackLCwrapper">
         <div class="feedbackLCcontent">
             <div class="feedbackLCuserinfo">
-                <img class="feedbackLCimage" src="<?php echo $user['image'];?>" alt="Фотография <?php echo $user['name'];?>">
+                <!-- <img class="feedbackLCimage" src="<?php echo $user['image'];?>" alt="Фотография <?php echo $user['name'];?>"> -->
                 <div class="feedbackLCname" id="feedbackLCname"><?php echo $user['name'];?></div>
             </div>
             <span>Текст отзыва</span>

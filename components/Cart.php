@@ -81,7 +81,7 @@ class Cart
      * @param array $products <p>Массив с информацией о товарах</p>
      * @return integer <p>Общая стоимость</p>
      */
-    public static function getTotalPrice($products)
+    public static function getTotalPrice($products, $day = 'Monday')
     {
         // Получаем массив с идентификаторами и количеством товаров в корзине
         $productsInCart = self::getProducts();
@@ -92,6 +92,15 @@ class Cart
             // Если в корзине не пусто
             // Проходим по переданному в метод массиву товаров
             foreach ($products as $item) {
+                if(date("l") == $day) {
+                    if ($item['price_action'] !== "") {
+                        $item['price'] = $item['price_action'];
+                    } else {
+                        $item['price'] = $item['price'];
+                    }
+                } else {
+                    $item['price'] = $item['price'];
+                };
                 // Находим общую стоимость: цена товара * количество товара
                 $total += $item['price'] * $productsInCart[$item['id']];
             }

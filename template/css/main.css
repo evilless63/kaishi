@@ -1685,7 +1685,8 @@ overflow: hidden;}
   align-items: flex-start;
   width: 100%; }
   .lcContentTabs .zakaz .adressRow span {
-    display: block; }
+    display: block;
+    width: 40%;}
   .lcContentTabs .zakaz .adressRow .adressRowEdit {
     cursor: pointer;
     margin: 0 20px; }
@@ -1698,20 +1699,21 @@ overflow: hidden;}
   padding: 20px 65px 20px 55px;
   margin: 0 -15px 0 -15px;
       align-items: center; }
-  .lcContentTabs .zakaz .row .adressAdd, .lcContentTabs .zakaz .row .passwordEdit, .adressAdd {
+  .lcContentTabs .zakaz .row .adressAdd, .lcContentTabs .zakaz .row .passwordEdit, .adressAdd, .adressActive {
     background-image: linear-gradient(-71deg, #00bacd, #02808e);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
     color: #fff;
     font-family: arial;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 12px 12px;
     border-radius: 5px;
     cursor: pointer;
     color: #fff;
     display: block;
+    text-align: center;
     width: 200px; }
 
-  .adressAdd {
+  .adressAdd, .adressActive {
     margin: 0 0 0 40px;
   }
 
@@ -2156,7 +2158,7 @@ span.headerContentDesc {
 margin-right: 15px;}
 
 .contentMainPage {
-  width: 67.9%; !important;
+  width: 67.9% !important;
 }
 
 
@@ -2170,7 +2172,7 @@ margin-right: 15px;}
 .special, .mobileHeader, .mobileFooter,
 .topAlert, .catalogMobile, .indexMobile, .chooseProucts,
 .choosePayment, .actionMobile, .actionMoreMobile, .deliveryMobile, .thematicMobile, 
-.thematicMoreMobile {
+.thematicMoreMobile, .reviewsMobile {
   display: none;
 }
 

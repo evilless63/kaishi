@@ -21,7 +21,7 @@ class Product
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, name, price, is_new, description, product_type FROM product '
+        $sql = 'SELECT * FROM product '
                 . 'WHERE status = "1" ORDER BY id DESC '
                 . 'LIMIT :count';
 
@@ -42,8 +42,9 @@ class Product
             $productsList[$i]['id'] = $row['id'];
             $productsList[$i]['name'] = $row['name'];
             $productsList[$i]['price'] = $row['price'];
+            $productsList[$i]['price_action'] = $row['price_action'];
             $productsList[$i]['is_new'] = $row['is_new'];
-            $products[$i]['product_type'] = $row['product_type'];
+            $productsList[$i]['product_type'] = $row['product_type'];
             $productsList[$i]['description'] = $row['description'];
             $i++;
         }
@@ -66,7 +67,7 @@ class Product
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'SELECT id, name, price, is_new, description, product_type FROM product '
+        $sql = 'SELECT * FROM product '
                 . 'WHERE status = 1 AND category_id = :category_id '
                 . 'ORDER BY id ASC LIMIT :limit OFFSET :offset';
 
@@ -86,6 +87,7 @@ class Product
             $products[$i]['id'] = $row['id'];
             $products[$i]['name'] = $row['name'];
             $products[$i]['price'] = $row['price'];
+            $products[$i]['price_action'] = $row['price_action'];
             $products[$i]['description'] = $row['description'];
             $products[$i]['product_type'] = $row['product_type'];
             $products[$i]['is_new'] = $row['is_new'];
@@ -193,7 +195,7 @@ class Product
         $db = Db::getConnection();
 
         // Получение и возврат результатов
-        $result = $db->query('SELECT id, name, price, is_new FROM product '
+        $result = $db->query('SELECT * FROM product '
                 . 'WHERE status = "1" AND is_recommended = "1" '
                 . 'ORDER BY id DESC');
         $i = 0;
@@ -202,7 +204,8 @@ class Product
             $productsList[$i]['id'] = $row['id'];
             $productsList[$i]['name'] = $row['name'];
             $productsList[$i]['price'] = $row['price'];
-            $products[$i]['product_type'] = $row['product_type'];
+            $productsList[$i]['price_action'] = $row['price_action'];
+            $productsList[$i]['product_type'] = $row['product_type'];
             $productsList[$i]['is_new'] = $row['is_new'];
             $i++;
         }
@@ -219,15 +222,16 @@ class Product
         $db = Db::getConnection();
 
         // Получение и возврат результатов
-        $result = $db->query('SELECT id, name, price, code FROM product ORDER BY id ASC');
+        $result = $db->query('SELECT * FROM product ORDER BY id ASC');
         $productsList = array();
         $i = 0;
         while ($row = $result->fetch()) {
             $productsList[$i]['id'] = $row['id'];
             $productsList[$i]['name'] = $row['name'];
             $productsList[$i]['code'] = $row['code'];
-            $products[$i]['product_type'] = $row['product_type'];
+            $productsList[$i]['product_type'] = $row['product_type'];
             $productsList[$i]['price'] = $row['price'];
+            $productsList[$i]['price_action'] = $row['price_action'];
             $i++;
         }
         return $productsList;
@@ -436,8 +440,9 @@ class Product
         while ($row = $result->fetch()) {
             $productsList['id'] = $row['id'];
             $productsList['name'] = $row['name'];
-            $products[$i]['product_type'] = $row['product_type'];
+            $productsList['product_type'] = $row['product_type'];
             $productsList['price'] = $row['price'];
+            $productsList['price_action'] = $row['price_action'];
         }
         return $productsList;    
     }

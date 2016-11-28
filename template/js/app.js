@@ -80,7 +80,9 @@ $(document).ready(function(){
 			    	var data = JSON.parse(response);
 			    	if(data.product_type == 'roll') {
 			    		if (getDayName() == "Monday") {
-			    			data.price = data.price - (data.price/100*25);	
+			    			if(data.price_action.length > 0) {
+			    				data.price = data.price_action;	
+			    			} 	
 			    		}
 			    		$('.tabs__contentBuyBlock').html(' <img src="/template/images/icons/mainMenu__rolls.svg" alt="">'+
                         '<span>*</span>'+
@@ -263,54 +265,49 @@ $('.ContentDescPromoBlockTocartThematic').click(function(){
 
 //Оставить отзыв из личного кабинета
 
-$('.zakazRowSchedule').click(function(){
+    $('.zakazRowSchedule').click(function () {
 
-	$('.feedbackLCcontent').css('display', 'flex');
-	var heightR = $(document).height();// высота экрана
-	var widthR = $(window).width();// ширина экрана
+        $('.feedbackLCcontent').css('display', 'flex');
+        var heightR = $(document).height();// высота экрана
+        var widthR = $(window).width();// ширина экрана
 
-	$('.feedbackLCwrapper').css({'display':'block','width':widthR,'height':heightR});
+        $('.feedbackLCwrapper').css({'display': 'block', 'width': widthR, 'height': heightR});
 
-	$('.feedbackLCcontent').css({
-		position:'absolute',
-		left: ($(document).width() - $('.feedbackLCcontent').outerWidth())/2,
-		top: ($(document).height() - $('.feedbackLCcontent').outerHeight())/2
-	}); 
+        $('.feedbackLCcontent').css({
+            position: 'absolute',
+            left: ($(document).width() - $('.feedbackLCcontent').outerWidth()) / 2,
+            top: ($(document).height() - $('.feedbackLCcontent').outerHeight()) / 2
+        });
 
-	$('.feedbackLCsend').click(function(){
-		var name = $('.feedbackLCname').text();
-		var image = $('.feedbackLCimage').attr('src');
-		var text = $('.feedbackLCtext').val();
-		var mark = $('.feedbackLCmark').val();
+        $('.feedbackLCsend').click(function () {
+            var text = $('.feedbackLCtext').val();
+            var mark = $('.feedbackLCmark').val();
 
-		if (text !=="" && mark !== "" ) {
+            if (text.length > 0 && mark.length > 0) {
 
-			$.post(
-			  "/cabinet/addfeedback",
-			  {
-			  	goFeedback: 1,
-			    name: name,
-			    image: image,
-			    text: text,
-			    mark: mark,
-			  },
-			  function onAjaxSuccess(data)
-			{
-			  // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
-			  alert("Ваш отзыв успешно отправлен");
-			  // Возвращаем пользователя в корзину
-		      // location.reload();
-			}
-			);
+                $.post(
+                        "/feedback/addfeedback",
+                        {
+                            text: text,
+                            mark: mark
+                        },
+                        function onAjaxSuccess(data)
+                        {
+                            // Здесь мы получаем данные, отправленные сервером и выводим их на экран.
+                            alert(data);
+                            // Возвращаем пользователя в корзину
+                            // location.reload();
+                        }
+                );
 
-		} else {
+            } else {
 
-			alert("Заполните поля !");
+                alert("Заполните поля !");
 
-		}
-	});
+            }
+        });
 
-});
+    });
 
 $(document).mouseup(function(e){ // событие клика по веб-документу
 	var div = $(".feedbackLCcontent"); // тут указываем ID элемента
@@ -324,11 +321,51 @@ $(document).mouseup(function(e){ // событие клика по веб-док
 
     
 // Обработка ввода адреса в кабинете пользователя
+    $('.adressAdd').click(function () {
+        var adress = $('.addAdressField').val();
+        if (adress.length > 0) {
+            var data = {adress: adress};
+            $.ajax({
+                url: '/adress/addadress/',
+                type: 'post',
+                data: data,
+                success: function (data) {
+                    alert(data);
+                    window.location.href = "/cabinet";
+                }
+            });
+        }
 
-$('.adressAdd').click(function(){
-	
-});
+    });
 
+// Обработка удаления адреса в кабинете пользователя
+    $('.adressRowDelete').click(function () {
+        var id = $(this).attr('id');
+        var data = {id: id};
+        $.ajax({
+            url: '/adress/deleteadress/',
+            type: 'post',
+            data: data,
+            success: function (data) {
+                alert(data);
+                window.location.href = "/cabinet";
+            }
+        });
+    });
+
+    $('.adressActive').click(function () {
+        var id = $('input:checked').attr('id');
+        var data = {id: id};
+        $.ajax({
+            url: '/adress/setactiveadress/',
+            type: 'post',
+            data: data,
+            success: function (data) {
+                alert(data);
+                window.location.href = "/cabinet";
+            }
+        });
+    });
 //Дополнительные товары в виде карусели на страниы корзины 
 $('.aditionallyBlocks').slick({
   arrows: true,
@@ -340,38 +377,38 @@ $('.aditionallyBlocks').slick({
 
 //Обработка ввода номера скидочной карточки
 
-$('#contenInput').click(function(){
+    $('#cartPaymentBlockCartnumber6').change(function () {
 
-	
-var CardNum1 = $('#cartPaymentBlockCartnumber1').val();
-var CardNum2 = $('#cartPaymentBlockCartnumber2').val();
-var CardNum3 = $('#cartPaymentBlockCartnumber3').val();
-var CardNum4 = $('#cartPaymentBlockCartnumber4').val();
-var CardNum5 = $('#cartPaymentBlockCartnumber5').val();
-var CardNum6 = $('#cartPaymentBlockCartnumber6').val();
+        if ($('.orderSumm').length = 0) {
+            alert("В корзине нет товаров !")
 
-var card = CardNum1+CardNum2+CardNum3+CardNum4+CardNum5+CardNum6;
+        } else {
+            var CardNum1 = $('#cartPaymentBlockCartnumber1').val();
+            var CardNum2 = $('#cartPaymentBlockCartnumber2').val();
+            var CardNum3 = $('#cartPaymentBlockCartnumber3').val();
+            var CardNum4 = $('#cartPaymentBlockCartnumber4').val();
+            var CardNum5 = $('#cartPaymentBlockCartnumber5').val();
+            var CardNum6 = $('#cartPaymentBlockCartnumber6').val();
 
+            var card = CardNum1 + CardNum2 + CardNum3 + CardNum4 + CardNum5 + CardNum6;
+            var data = {card: card};
 
-		$.post(
-		  "/cart/cardcheck",
-		  {
-		    card: card,
-		  },
-		  function (data){
-		  	if(data = false) {
-		  		alert('Карта указана неверно, уточните у администратора сайта');
-		  	} else {
-		  		$('.cartPaymentBlockItogo').prepend('<span>Скидка с учетом карточки:</span>');
-		  		$('.orderSumm').empty();
-		  		$('.orderSumm').append(data);
-		  	}
-		  }
-		);
-
-		
-});
-
+            $.ajax({
+                url: "/card/cardcheck",
+                type: "post",
+                data: data,
+                success: function(data) {
+                    if (data == false) {
+                        alert('Карта указана неверно, уточните у администратора сайта');
+                    } else {
+                        $('.cartPaymentBlockItogo').prepend('<span>Скидка с учетом карточки:</span>');
+                        $('.orderSumm').empty();
+                        $('.orderSumm').text(data);
+                    }
+                }
+            });
+        }
+    });
 
 });
 

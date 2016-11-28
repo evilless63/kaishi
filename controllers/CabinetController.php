@@ -23,6 +23,7 @@ class CabinetController
         // Получаем список заказов
         $ordersList = Order::getOrdersList();
 
+        $adressList = Adress::getAlladress($userId);
 
         // Получаем список заказов по вошедшему пользователю
         $ordersListId = Order::getOrderByUserId($userId);
@@ -54,8 +55,7 @@ class CabinetController
     /**
      * Action для страницы "Редактирование данных пользователя"
      */
-    public function actionEdit()
-    {
+    public function actionEdit() {
         // Получаем идентификатор пользователя из сессии
         $userId = User::checkLogged();
 
@@ -104,23 +104,6 @@ class CabinetController
         // Подключаем вид
         require_once(ROOT . '/views/cabinet/edit.php');
         return true;
-    }
-
-    // Отправка отзыва клиента со страницы личного кабинета
-
-    public function actionAddfeedback()
-    {
-
-        if(isset($_POST['goFeedback'])) {
-            $name = $_POST['name'];
-            $image = $_POST['image'];
-            $date = date("d.m.y");
-            $text = $_POST['text'];
-            $mark = $_POST['mark'];
-
-            $result = User::addFeedback($name, $image, $date, $text, $mark);
-        }
-
     }
 
 }

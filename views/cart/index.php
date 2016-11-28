@@ -3,7 +3,6 @@
         <div class="mainWrap mainWrapCart mainWrapAkcii container row toSpaceBetween">
             <div class="content">
                 <h1 class="headerContent">Оформление заказа</h1>
-                <?php print_r($_SESSION['user'])?>
                 <div class="row">
                     <div class="cartProductsBlock">
                         <?php if ($productsInCart): ?>
@@ -20,7 +19,11 @@
                                             <img src="template/images/icons/misc__plus.svg" alt="">
                                         </a>
                                     </div>
-                                    <div class="cartProductsBlockCost"><?php echo $product['price'];?></div>
+                                    <div class="cartProductsBlockCost">
+                                        <?php 
+                                            Actions::getActionPriceLite('Monday', $product);
+                                        ?> 
+                                    </div>
                                     <div class="cartProductsBlockDelete">
                                         <a href="/cart/delete/<?php echo $product['id'];?>">
                                             <img src="template/images/icons/misc__delete.svg" alt="">
@@ -63,7 +66,7 @@
                             <input type="text" id="cartPaymentBlockCartnumber4" maxlength="1" class="cartPaymentBlockCartnumberInput" value="">
                             <input type="text" id="cartPaymentBlockCartnumber5" maxlength="1" class="cartPaymentBlockCartnumberInput" value="">
                             <input type="text" id="cartPaymentBlockCartnumber6" maxlength="1" class="cartPaymentBlockCartnumberInput" value="">
-                            <div id="contenInput">GO</div>
+<!--                            <div id="contenInput">GO</div>-->
                         </div>
                         <div class="cartPaymentBlockItogo">
                         <?php if ($productsInCart): ?>
@@ -73,12 +76,14 @@
                         <?php endif; ?>    
                         </div>
                         <div class="cartPaymentBlockMisc">
-                            <?php if($product_action == true){ echo "<span>Ваша скидка ".$product_discount. " рублей.</span>";}?>
+                            <!-- <?php if($product_action == true){ echo "<span>Ваша скидка ".$product_discount. " рублей.</span>";}?> -->
                             <span class="question">Нужны дополнительные наборы?</span>
                             <div class="cartPaymentBlockMiscRow">
                                 <img class="cartPaymentBlockMiscImg" src="<?php echo Product::getImage($simpleProduct['id'])?>" alt="<?php echo $simpleProduct['name'] ?>" title="<?php echo $simpleProduct['name'] ?>" />
                                 <div class="cartPaymentBlockMiscCost">
-                                    <?php echo $simpleProduct['price']?> р.
+                                    <?php 
+                                      Actions::getActionPriceLite('Monday', $product);
+                                    ?>  р.
                                 </div>
                                 <!-- <div ></div> -->
                                 <a class="cartPaymentBlockMiscBuyButton" href="/cart/add/<?php echo $simpleProduct['id']; ?>" data-id="<?php echo $simpleProduct['id']; ?>" class="sushiBlockGetBusket add-to-cart">
@@ -96,7 +101,7 @@
                             <input type="text" class="registrationFormName" name="registrationFormName" placeholder="*Ваше имя" value="<?php echo $user['name'];?>" required>
                             <input type="text" class="registrationFormSurname" name="registrationFormSurname" placeholder="*Ваша Фамилия" value="<?php echo $user['surname'];?>"  required>
                             <input type="text" class="registrationFormPhone" name="registrationFormPhone" placeholder="*Телефон" value="<?php echo $user['phone'];?>" required>
-                            <input type="text" class="registrationFormAdress" name="registrationFormAdress" placeholder="*Адрес" required>
+                            <input type="text" class="registrationFormAdress" name="registrationFormAdress" placeholder="*Адрес" value="<?php echo $adress['adress'];?>" required>
                             <textarea name="registrationFormTextarea" id="registrationFormTextarea" cols="30" rows="3" placeholder="Добавить примечание к адресу"></textarea>
                         </form>
                     </div>
@@ -134,7 +139,10 @@
                             <h2 class="sushiBlockHeader sushiopenProfail" data-id="<?php echo $product['id']; ?>"><?php echo $product['name']; ?></h2>
                             <div class="sushiBlockDesc"><?php echo mb_strimwidth($product['description'], 0, 65, "..."); ?></div>
                             <div class="sushiBlockGet">
-                                <div class="sushiBlockGetCost"><?php echo $product['price']; ?> р.</div>
+                                <div class="sushiBlockGetCost">
+                                <?php 
+                                   Actions::getActionPriceLite('Monday', $product);
+                                ?>  р.</div>
                                 <a href="/cart/add/<?php echo $product['id']; ?>" data-id="<?php echo $product['id']; ?>" class="sushiBlockGetBusket add-to-cart">
                                     В корзину
                                 </a>
@@ -155,7 +163,10 @@
                             <div class="cartRowDesc">
                                 <span><?php echo $product['name'];?></span>
                             </div>
-                            <div class="cartRowCost"><?php echo $product['price'];?> р.</div>
+                            <div class="cartRowCost">
+                                <?php 
+                                  Actions::getActionPriceLite('Monday', $product);
+                                ?> р.</div>
                             <div class="row cartProductsBlockCount">
                                 <a href="/cart/minus/<?php echo $product['id'];?>" class="cartProductsBlockCountMinus">
                                     <img src="template/images/icons/misc__minus.svg" alt="">
@@ -165,7 +176,18 @@
                                     <img src="template/images/icons/misc__plus.svg" alt="">
                                 </a>
                             </div>
-                            <div class="cartRowFinalCost"><?php echo $product['price']*$productsInCart[$product['id']];?> р.</div>
+                            <div class="cartRowFinalCost">
+                                <?php 
+                                    if(date("l") == "Monday") {
+                                        if(isset($product['price_action'])) {
+                                            echo $product['price_action']*$productsInCart[$product['id']];     
+                                        } else {
+                                            echo $product['price']*$productsInCart[$product['id']];
+                                        }
+                                    } else {
+                                        echo $product['price']*$productsInCart[$product['id']];
+                                    }; 
+                                ?> р.</div>
                             <div class="cartRowDelete">
                                 <a href="/cart/delete/<?php echo $product['id'];?>">
                                     <img src="template/images/icons/misc__delete.svg" alt="">

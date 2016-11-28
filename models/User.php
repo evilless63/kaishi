@@ -309,13 +309,13 @@ class User
      * @param string $password <p>Пароль</p>
      * @return boolean <p>Результат выполнения метода</p>
      */
-    public static function addFeedback($name, $image, $date, $text, $mark)
+    public static function addFeedback($user_id, $date_time, $text, $mark)
     {
         // Соединение с БД
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = 'INSERT INTO rewiews (user_id, date_time, `text`, mark)'
+        $sql = 'INSERT INTO reviews (user_id, date_time, `text`, mark)'
                 . 'VALUES (:user_id, :date_time, :text, :mark)';
 
         // Получение и возврат результатов. Используется подготовленный запрос
@@ -376,5 +376,7 @@ class User
 
         return $result->fetch();
     } 
+
+    
 
 }

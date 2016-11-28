@@ -23,7 +23,7 @@ return array(
     'cart/add/([0-9]+)' => 'cart/add/$1', // actionAdd в CartController    
     'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1', // actionAddAjax в CartController
     'cart' => 'cart/index', // actionIndex в CartController
-    'cart/Cardcheck' => 'cart/Cardcheck',
+    'card/cardcheck' => 'card/cardcheck',
     // Пользователь:
     'user/register' => 'user/register',
     'user/login' => 'user/login',
@@ -32,7 +32,10 @@ return array(
     'user/logout' => 'user/logout',
     'cabinet/edit' => 'cabinet/edit',
     'cabinet' => 'cabinet/index',
-    'cabinet/addfeedback' => 'cabinet/addfeedback',
+    'adress/addadress' => 'adress/addadress',
+    'adress/deleteadress' => 'adress/deleteadress',
+    'adress/setactiveadress' => 'adress/setactiveadress',
+    'feedback/addfeedback' => 'feedback/addfeedback',
     // Управление товарами:    
     'admin/product/create' => 'adminProduct/create',
     'admin/product/update/([0-9]+)' => 'adminProduct/update/$1',

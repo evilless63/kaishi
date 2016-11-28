@@ -110,38 +110,40 @@ class CartController
 
             // Получаем массив с полной информацией о необходимых товарах
             // Список товаров в категории
-        if(date("l") == "Monday") {
+        // if(date("l") == "Monday") {
 
-            $totalNoactionPrice = "0";
-             $product_action = true;   
-             $cProducts = Product::getProdustsByIds($productsIds);
-             $products = array();
-                foreach($cProducts as $product) {
-                    if($product["product_type"] = "roll") {
-                      // $product["price"] = $product["price"] - ($product["price"]*25/100);  
-                      $product["price_fin"] = $product["price"]; 
-                      $product["price"] = $product["price"] - ($product["price"]*25/100);               
-                    } else {
-                      $product["price_fin"] = $product["price"];   
-                    }
+        //     $totalNoactionPrice = "0";
+        //      $product_action = true;   
+        //      $cProducts = Product::getProdustsByIds($productsIds);
+        //      $products = array();
+        //         foreach($cProducts as $product) {
+        //             if($product["product_type"] = "roll") {
+        //               // $product["price"] = $product["price"] - ($product["price"]*25/100);  
+        //               $product["price_fin"] = $product["price"]; 
+        //               $product["price"] = $product["price"] - ($product["price"]*25/100);               
+        //             } else {
+        //               $product["price_fin"] = $product["price"];   
+        //             }
 
-                  array_push($products, $product);
+        //           array_push($products, $product);
 
-                  $totalNoactionPrice += $product["price_fin"] * $productsInCart[$product['id']];
-                } 
+        //           $totalNoactionPrice += $product["price_fin"] * $productsInCart[$product['id']];
+        //         } 
 
               
 
-          } else {
-            $product_action = false;
-            $totalNoactionPrice = $totalPrice;
+        //   } else {
+            // $product_action = false;
             $products = Product::getProdustsByIds($productsIds);
-          }
+            // $totalPrice = Cart::getTotalPrice($products);
+            // $totalNoactionPrice = $totalPrice;
+            
+          // }
             
 
             // Получаем общую стоимость товаров
             $totalPrice = Cart::getTotalPrice($products);
-            $product_discount = $totalNoactionPrice - $totalPrice;
+            // $product_discount = $totalNoactionPrice - $totalPrice;
         } else {
             $totalPrice = "0";
         }
@@ -149,6 +151,7 @@ class CartController
         // Получаем информацию о пользователе из БД
         $userId = User::getUser();
         $user = User::getUserById($userId);
+        $adress = Adress::getAdressActive($userId);
 
         // Подключаем вид
         require_once(ROOT . '/views/cart/index.php');
@@ -254,26 +257,5 @@ class CartController
          
     }
 
-    public function actionCardcheck()
-    {
-        if(isset($_SESSION['user'])) {
-            $card = $_POST['card'];
-            $user = $_SESSION['user'];
-
-            $cardData = User::getSaleCard($user, $card);
-
-            if (isset($cardData)) {
-                $info = $totalPrice-$totalPrice/100*$cardData['sale_count']; 
-            } else {
-                $info = $totalPrice;  
-            }  
-        } else {
-            $info = "Сначала необходимо войти на сайт";
-        }
-        
-        echo $info;
-       
-    
-    }
 
 }

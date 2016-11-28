@@ -68,7 +68,7 @@
                 $('.thematicMoreMobile').css('display', 'block');
                 $('head').append('<link rel="stylesheet" href="/template/css/m__thematic.css" />');
            }
-           else{
+           else if($('.reviewsMobile').length > 0){
                 $('main').remove();
                 $('.reviewsMobile').css('display', 'block');
                 $('head').append('<link rel="stylesheet" href="/template/css/m__reviews.css" />');
@@ -87,19 +87,22 @@
             <div class="productMenu">
                 <ul>
                     <?php 
-                    $arrayAclass = array('sushi', 'inari', 'rolls', 'hotrolls', 'set', 'gunkan', 'zakuski', 'pizza', 'drink');
-                    $count = 0;
-                    foreach ($categories as $categoryItem): ?>
-                    <li>
-                        <a class="<?php echo $arrayAclass[$count]; ?>" href="/category/<?php echo $categoryItem['id']; ?>"
-                            class="<?php if ($categoryId == $categoryItem['id']) echo 'catalogActive'; ?>">                                                                                    
-                            <?php echo $categoryItem['name']; ?>
-                        </a>
-                    </li>
-                    <?php 
-                    $count++ ;   
-                    endforeach; ?>  
-                    <li><a class="set" href="/thematic">Тематический ужин</a></li> 
+                   
+                    if(isset($categories)){
+                        $arrayAclass = array('sushi', 'inari', 'rolls', 'hotrolls', 'set', 'gunkan', 'zakuski', 'pizza', 'drink');
+                        $count = 0;
+                        foreach ($categories as $categoryItem): ?>
+                        <li>
+                            <a class="<?php echo $arrayAclass[$count]; ?>" href="/category/<?php echo $categoryItem['id']; ?>"
+                                class="<?php if($categoryId === $categoryItem['id']){echo 'catalogActive';} ?>">                                                                                    
+                                <?php echo $categoryItem['name']; ?>
+                            </a>
+                        </li>
+                        <?php 
+                        $count++ ;   
+                        endforeach; 
+                        echo "<li><a class=\"set\" href=\"/thematic\">Тематический ужин</a></li>";   
+                    }  ?>               
                 </ul>
             </div>
         </div>

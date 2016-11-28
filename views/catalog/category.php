@@ -49,7 +49,11 @@
                     <img class="rowProductImg sushiBlockImage rowProductPaymentTocart" data-id="<?php echo $product['id']; ?>" src="<?php echo Product::getImage($product['id']); ?>" alt="<?php echo $product['name']; ?>">
                     <div class="rowProductDesc"><?php echo mb_strimwidth($product['description'], 0, 65, "..."); ?></div>
                     <div class="rowProductPayment">
-                        <div class="rowProductPaymentCost"><?php echo $product['price']; ?> р.</div>
+                        <div class="rowProductPaymentCost">
+                        <?php 
+                            Actions::getActionPriceLite('Monday', $product);
+                        ?> 
+                        р.</div>
                         <a href="/cart/add/<?php echo $product['id']; ?>" data-id="<?php echo $product['id']; ?>" class="sushiBlockGetBusket rowProductPaymentTocartImg add-to-cart">
                             В корзину
                         </a>
