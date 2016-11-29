@@ -988,10 +988,15 @@ main {
   margin: 0 0.5%; 
   min-height: 240px;
   position: relative;}
-  .sushiBlock img {
-    padding: 8px 0; 
-    width: 124px;
-    height: 85px;}
+ /*  .sushiBlock img {
+   padding: 8px 0; 
+   width: 124px;
+   height: 85px;} */
+  .sushiBlock img { 
+  /* padding: 8px 0; */
+    width: 100%;
+    height: 100%;
+  }    
   .sushiBlock .sushiBlockHeader {
     border-top: 2px solid #00b4cd;
     border-bottom: 2px solid #00b4cd;

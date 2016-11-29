@@ -369,10 +369,15 @@ class Product
 
         // Путь к изображению товара
         $pathToProductImage = $path . $id . '.jpg';
+        
+        $pathToProductImagePng = $path . $id . '.png';
 
         if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImage)) {
             // Если изображение для товара существует
             // Возвращаем путь изображения товара
+            return $pathToProductImage;
+        } else if (file_exists($_SERVER['DOCUMENT_ROOT'].$pathToProductImagePng)){
+            $pathToProductImage = $pathToProductImagePng;   
             return $pathToProductImage;
         }
 

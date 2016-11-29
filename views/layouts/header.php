@@ -56,7 +56,7 @@
            else if($('.deliveryMobile').length > 0){
                 $('main').remove();
                 $('.deliveryMobile').css('display', 'block');
-                $('head').append('<link rel="stylesheet" href="/template/css/m__delivery.css" />');
+                $('head').append('<link rel="stylesheet" href="/template/css/m__actions.css" />');
            }
            else if($('.thematicMobile').length > 0){
                 $('main').remove();

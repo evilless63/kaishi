@@ -12,7 +12,7 @@
 
                      foreach ($categoryProducts as $product): ?>
                         <div class="sushiBlock">
-                            <img class="sushiBlockImage" data-id="<?php echo $product['id']; ?>" src="<?php echo Product::getImage($product['id']); ?>" alt="Суши">
+                            <img class="sushiBlockImage" style="background: url(<?php echo Product::getImage($product['id']); ?>) center center no-repeat;  height: 124px; background-size: 200px;" data-id="<?php echo $product['id']; ?>">
                             <h2 class="sushiBlockHeader sushiopenProfail" data-id="<?php echo $product['id']; ?>"><?php echo $product['name']; ?></h2>
                             <div class="sushiBlockDesc"><?php echo mb_strimwidth($product['description'], 0, 65, "..."); ?></div>
                             <div class="sushiBlockGet">
@@ -79,7 +79,7 @@
 
               <div class="tabs__content active">
                 <div class="tabs__contentDesc">
-                    <img class="productModalImage" src="/template/images/user/sushi/profailImg.png" alt="">
+                    <img class="productModalImage"  alt="">
                     <span class="productDescription"></span>
                 </div>
                 <div class="tabs__contentBuy">
@@ -96,7 +96,7 @@
 
               <div class="tabs__content">
                 <div class="tabs__contentDesc">
-                    <img src="/template/images/user/sushi/profailImg.png" alt="">
+                    <img  alt="">
                     <span>Лосось, сыр «Филадельфия», огурец (308 г)</span>
                     <span>Пищевая ценность:</span>
                     <span>Белки 21  Жиры 17  Углеводы 27  Калории 338</span>
@@ -151,7 +151,7 @@
 
               <div class="tabs__content active">
                 <div class="tabs__contentDesc">
-                    <img class="productModalImage" src="/template/images/user/sushi/profailImg.png" alt="">
+                    <img class="productModalImage" alt="">
                     <span class="productDescription"></span>
                 </div>
                 <div class="tabs__contentBuy">

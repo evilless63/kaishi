@@ -489,3 +489,124 @@ h1.headerContent, h2.headerContent, .headerContent {
 .topAlert {
   display: none;
 }
+
+.deliveryMobile {
+  display: none;
+}
+/*БЛОК СТИЛЕЙ ДЛЯ СТРАНИЦЫ ДОСТАВКА И ОПЛАТА*/
+
+  .mainWrapMobile .contentDelivery {
+    width: 100% !important;
+    padding: 15px;
+    font-family: candara;
+    display: flex;
+    flex-direction: column; }
+/*    .mainWrapMobile .content h1.headerContent, .mainWrapMobile .content h2.headerContent, .mainWrapMobile .content .headerContent {
+      padding: 0 0 15px 0; }*/
+      .headerContent {
+          font-size: 2em;
+    padding: 10px 0;
+      }
+    .mainWrapMobile .content .deliveryContentPromo {
+      display: flex;
+      flex-direction: column;
+      background-color: #00b4cd;
+      justify-content: space-around;
+      align-items: center;
+      border-bottom: 2px solid #222222;
+      margin: 0 -15px; }
+      .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock {
+        text-align: center;
+        color: white;
+        text-transform: uppercase;
+        padding: 10px;
+        position: relative; }
+        .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .first {
+          width: 100%; }
+        .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .second {
+          width: 100%; }
+        .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .third {
+          width: 100%; }
+        .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .deliveryContentPromoDesc {
+          font-size: 1.3em; }
+          .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .deliveryContentPromoDesc span {
+            font-size: 0.6em; }
+        .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .big {
+          font-size: 1.6em;
+          font-weight: bold; }
+          .mainWrapMobile .content .deliveryContentPromo .deliveryContentPromoBlock .big span {
+            font-size: 0.5em;
+            font-weight: normal; }
+    .mainWrapMobile .content .deliveryContentDesc {
+      display: block;
+      padding: 15px 0 15px 0; }
+      .mainWrapMobile .content .deliveryContentDesc .deliveryContentDescMap {
+        /*width: 52%;*/
+        display: none;
+        box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.6); }
+      .mainWrapMobile .content .deliveryContentDesc .deliveryContentDescText {
+        /*width: 42%;*/
+        text-align: left;
+        font-size: 0.85em;
+        color: #6d6c6c; }
+        .mainWrapMobile .content .deliveryContentDesc .deliveryContentDescText p {
+          line-height: 1.2em;
+          padding: 0 0 15px 0; }
+    .mainWrapMobile .content .deliveryContentCost {
+      display: flex;
+      flex-direction: column;
+      background-color: #222222;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin: 0 -15px 15px -15px; }
+      .mainWrapMobile .content .deliveryContentCost .deliveryContentCostBlock {
+        text-align: center;
+        color: #00b4cd;
+        padding: 0px 10px 0px 10px;
+        position: relative;
+        display: flex;
+        align-items: center; }
+        .mainWrapMobile .content .deliveryContentCost .deliveryContentCostBlock .deliveryContentCostDesc {
+          font-size: 0.9em; }
+    .mainWrapMobile .content .deliveryContentCostSub {
+      text-align: left;
+      font-size: 1em;
+      color: #6d6c6c; }
+
+.first:before {
+  content: url(../images/icons/delivery__free.png);
+  top: 2px;
+  left: -30px;
+  width: 35px;
+  position: absolute; }
+
+.second:before {
+  content: url(../images/icons/misc__truck.svg);
+  top: 1px;
+  left: -30px;
+  width: 35px;
+  position: absolute; }
+
+.cache:before {
+  content: url(../images/icons/payment__cache.png);
+  width: 45px; }
+
+.qiwi:before {
+  content: url(../images/icons/payment__qiwi.png);
+  width: 35px; }
+
+.courerCart:before {
+  content: url(../images/icons/payment__courercart.png);
+  width: 45px; }
+
+.webMoney:before {
+  content: url(../images/icons/payment__webmoney.png);
+  width: 35px; }
+
+.bankCart:before {
+  content: url(../images/icons/payment__bankcart.png);
+  width: 45px; }
+
+.yandexMoney:before {
+  content: url(../images/icons/payment__yandexmoney.png);
+  width: 35px; }     

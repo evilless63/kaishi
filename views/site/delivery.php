@@ -56,6 +56,53 @@
 		</div>
 	</div>
 </main>
+<!--<div class="deliveryMobile">
+			<div class="content contentDelivery">
+                            
+				<div class="akciiContent">
+					<div class="akciiRow">
+						<div class="akciiBlock">
+							<div class="akciiBlockRound">25% скидка на все роллы
+							<div class="akciiBlockDay">Каждый понедельник</div>
+							<a href="/actionsInfo" class="akciiBlockButton">Подробнее ></a>
+							</div>
+
+							<img src="/template/images/user/akcii/akciiImg1.jpg" alt="Скидка 25% на все роллы">
+						</div>
+					</div>
+					<div class="akciiRow">
+						<div class="akciiBlock">
+							<div class="akciiBlockRound">25% скидка на все роллы
+							<div class="akciiBlockDay">Каждый понедельник</div>
+							<a href="/actionsInfo" class="akciiBlockButton">Подробнее ></a>
+							</div>
+
+							<img src="/template/images/user/akcii/akciiImg1.jpg" alt="Скидка 25% на все роллы">
+						</div>
+					</div>
+					<div class="akciiRow">
+						<div class="akciiBlock">
+							<div class="akciiBlockRound">25% скидка на все роллы
+							<div class="akciiBlockDay">Каждый понедельник</div>
+							<a href="/actionsInfo" class="akciiBlockButton">Подробнее ></a>
+							</div>
+
+							<img src="/template/images/user/akcii/akciiImg1.jpg" alt="Скидка 25% на все роллы">
+						</div>
+					</div>
+					<div class="akciiRow">
+						<div class="akciiBlock">
+							<div class="akciiBlockRound">25% скидка на все роллы
+							<div class="akciiBlockDay">Каждый понедельник</div>
+							<a href="/actionsInfo" class="akciiBlockButton">Подробнее ></a>
+							</div>
+
+							<img src="/template/images/user/akcii/akciiImg1.jpg" alt="Скидка 25% на все роллы">
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>-->
 <div class="deliveryMobile">
 <div class="mainWrapMobile container row toSpaceBetween contentDeliveryMobile">
 	<div class="content  contentDelivery">

@@ -31,6 +31,20 @@ $(document).ready(function(){
 	// 		$(this).append('<span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span class="colored">★</span><span class="colored">★</span>');	
 	// 	}
 	// });
+//Скрывает элемент по клику в свободной области        
+function hideElement(element, wrapper = ""){
+    $(document).mouseup(function(e){ // событие клика по веб-документу
+	var div = element; // тут указываем ID элемента
+	if (!div.is(e.target) // если клик был не по нашему блоку
+	    && div.has(e.target).length === 0) { // и не по его дочерним элементам
+		div.hide(); // скрываем его
+		wrapper.css('display', 'none');
+	}
+});
+};
+
+hideElement($(".feedbackLCcontent"), $('.feedbackLCwrapper'));
+hideElement($(".sidebarPopUp"), $('.sidebarPopUpWrapper'));
 
 
 
@@ -84,17 +98,19 @@ $(document).ready(function(){
 			    				data.price = data.price_action;	
 			    			} 	
 			    		}
-			    		$('.tabs__contentBuyBlock').html(' <img src="/template/images/icons/mainMenu__rolls.svg" alt="">'+
-                        '<span>*</span>'+
-                        '<span>8</span>'+
-                        '<span>=</span>'+
+			    		$('.tabs__contentBuyBlock').html(
+//                        ' <img src="/template/images/icons/mainMenu__rolls.svg" alt="">'+
+//                        '<span>*</span>'+
+//                        '<span>8</span>'+
+//                        '<span>=</span>'+
                         '<span class="productPrice">'+data.price+'<span class="min"> р</span></span>');
 			    	} else {
 			    		$('.tabs__contentBuyBlock').html('<span class="productPrice">'+data.price+'<span class="min"> р</span></span>');
 			    	}
 			        $('.sushiProfailArea').children('h3').html(data.name);
 			        $('.productDescription').html(data.description);
-			        $(".productModalImage").attr('src', '/upload/images/products/' + data.id + '.jpg');
+			        $(".productModalImage").attr('style', 'background: url(/upload/images/products/' + data.id + '.jpg) center center no-repeat;      width: 100%;     height: 300px;        background-size: cover; ');
+			        $(".productModalImage").attr('src','');
 			        $('.sushiBlockGetBusketProfail').each(function(){
 			           $(this).attr('data-id', data.id); 
 			        });
@@ -309,14 +325,10 @@ $('.ContentDescPromoBlockTocartThematic').click(function(){
 
     });
 
-$(document).mouseup(function(e){ // событие клика по веб-документу
-	var div = $(".feedbackLCcontent"); // тут указываем ID элемента
-	if (!div.is(e.target) // если клик был не по нашему блоку
-	    && div.has(e.target).length === 0) { // и не по его дочерним элементам
-		div.hide(); // скрываем его
-		$('.feedbackLCwrapper').css('display', 'none');
-	}
-});
+
+
+
+
 
 
     
@@ -428,26 +440,28 @@ $(function() {
 //MOBILE
 
 
-$(document).ready(function(){
-	$( ".formActionCartNext").click(
-		function(){
-			$(".chooseProucts").css("display", "none");
-			$(".topAlert").css("display", "none");
-			$(".choosePayment").css( "display", "block" );
-		});
+$(document).ready(function () {
+    $(".formActionCartNext").click(
+            function () {
+                $(".chooseProucts").css("display", "none");
+                $(".topAlert").css("display", "none");
+                $(".choosePayment").css("display", "block");
+            });
 
-	$( ".formActionCartPrev").click(
-		function(){
-			$(".chooseProucts").css("display", "block");
-			$(".topAlert").css("display", "flex");
-			$(".choosePayment").css( "display", "none" );
-		});
+    $(".formActionCartPrev").click(
+            function () {
+                $(".chooseProucts").css("display", "block");
+                $(".topAlert").css("display", "flex");
+                $(".choosePayment").css("display", "none");
+            });
 
-	$('.headerMenuIcon').click(
-		function(){
-			$('.sidebarPopUp').toggle();	
-			$('.sidebarPopUpWrapper').toggle();
-		});	
+    $('.headerMenuIcon').click(
+            function () {
+                $('.sidebarPopUp').toggle();
+                $('.sidebarPopUpWrapper').toggle();
+            });
+
+    
 });	
 
 
