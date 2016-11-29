@@ -16,7 +16,7 @@
                             <h2 class="sushiBlockHeader sushiopenProfail" data-id="<?php echo $product['id']; ?>"><?php echo $product['name']; ?></h2>
                             <div class="sushiBlockDesc"><?php echo mb_strimwidth($product['description'], 0, 65, "..."); ?></div>
                             <div class="sushiBlockGet">
-                                <div class="sushiBlockGetCost"><?php echo $product['price']; ?> р.</div>
+                                <div class="sushiBlockGetCost"><?php Actions::getActionPriceLite('Monday', $product); ?> р.</div>
                                 <a href="/cart/add/<?php echo $product['id']; ?>" data-id="<?php echo $product['id']; ?>" class="sushiBlockGetBusket add-to-cart">
                                     В корзину
                                 </a>

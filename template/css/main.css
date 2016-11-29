@@ -986,7 +986,8 @@ main {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   text-align: center;
   margin: 0 0.5%; 
-  min-height: 240px;}
+  min-height: 240px;
+  position: relative;}
   .sushiBlock img {
     padding: 8px 0; 
     width: 124px;
@@ -2236,5 +2237,14 @@ margin-right: 15px;}
    content: "\2605";
    position: absolute;
    color: #e89e10;;
+}
+
+.thisIsAction {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -10px;
+    right: -5px;
+    background: url(../images/product-details/sale.png) top center no-repeat;
 }
 
